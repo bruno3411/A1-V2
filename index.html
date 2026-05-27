@@ -482,25 +482,40 @@ fieldset.g legend{
 
           <!-- TAB: Darba devēja raksturojums -->
           <div class="ctab-panel" id="cpanel_devejs">
-            <fieldset class="g" style="border:none;padding:0;">
-              <div style="display:grid;grid-template-columns:160px 120px 160px 140px;gap:4px;align-items:center;margin-bottom:8px;">
-                <span class="rl">Darbinieku skaits</span>
-                <input class="wi" id="devDarbSkaits" style="width:100%;" placeholder="0">
-                <span class="rl">Iemaksas kalendārā gadā</span>
-                <input class="wi" id="devIemaksas" style="width:100%;" placeholder="0.00 EUR">
-                <span class="rl">Nokontētas iemaksas</span>
-                <input class="wi" id="devNokont" style="width:100%;" placeholder="0.00 EUR">
-                <span></span><span></span>
-              </div>
-              <div style="font-weight:bold;font-size:11px;margin-bottom:6px;color:#1c4c5c;">Iepriekš saņemtie iesniegumi no šī darba devēja:</div>
-              <table class="wt">
+            <!-- Darbinieku skaits -->
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px;">
+              <span class="rl" style="width:140px;">Darbinieku skaits</span>
+              <input class="wi ro" id="devDarbSkaits" style="width:80px;" placeholder="0" readonly>
+            </div>
+            <!-- Apdrošināšanas iemaksas — pēdējie 12 mēneši ar scrollbar -->
+            <div class="sec-t">Apdrošināšanas iemaksas — pēdējie 12 mēneši</div>
+            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
+              <table class="wt" style="margin:0;">
                 <thead><tr>
-                  <th style="width:80px;">Nr.</th><th style="width:100px;">Datums</th>
-                  <th>Iesnieguma nosaukums</th><th style="width:80px;">Personu sk.</th><th style="width:80px;">Statuss</th>
+                  <th style="width:110px;">Iemaksu periods</th>
+                  <th style="width:200px;">Iemaksu objekts</th>
+                  <th>Veiktais iemaksu objekts</th>
                 </tr></thead>
-                <tbody id="prevAppsTbody"><tr class="er"><td colspan="5">Nav iepriekšēju iesniegumu</td></tr></tbody>
               </table>
-            </fieldset>
+              <div style="max-height:156px;overflow-y:auto;">
+                <table class="wt" id="devIemaksasTbl" style="margin:0;">
+                  <tbody id="devIemaksasTbody">
+                    <tr><td>04.2026</td><td>1 850,00 EUR</td><td>1 850,00 EUR</td></tr>
+                    <tr><td>03.2026</td><td>1 850,00 EUR</td><td>1 850,00 EUR</td></tr>
+                    <tr><td>02.2026</td><td>1 850,00 EUR</td><td>1 850,00 EUR</td></tr>
+                    <tr><td>01.2026</td><td>1 720,00 EUR</td><td>1 720,00 EUR</td></tr>
+                    <tr><td>12.2025</td><td>1 720,00 EUR</td><td>1 720,00 EUR</td></tr>
+                    <tr><td>11.2025</td><td>1 680,00 EUR</td><td>1 680,00 EUR</td></tr>
+                    <tr><td>10.2025</td><td>1 680,00 EUR</td><td>1 680,00 EUR</td></tr>
+                    <tr><td>09.2025</td><td>1 680,00 EUR</td><td>1 680,00 EUR</td></tr>
+                    <tr><td>08.2025</td><td>1 650,00 EUR</td><td>1 650,00 EUR</td></tr>
+                    <tr><td>07.2025</td><td>1 650,00 EUR</td><td>1 650,00 EUR</td></tr>
+                    <tr><td>06.2025</td><td>1 620,00 EUR</td><td>1 620,00 EUR</td></tr>
+                    <tr><td>05.2025</td><td>1 620,00 EUR</td><td>1 620,00 EUR</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
 
           <!-- TAB: Atteikt -->
@@ -609,12 +624,32 @@ fieldset.g legend{
 
           <!-- TAB: LĒMUMI -->
           <div class="ctab-panel" id="cpanel_lemumi">
-            <div class="sec-t">Darba devējam iepriekš sagatavotie lēmumi</div>
+
+            <!-- Iepriekš saņemtie iesniegumi — sākumā -->
+            <div class="sec-t">Iepriekš saņemtie iesniegumi no šī darba devēja</div>
+            <table class="wt" style="margin-bottom:6px;">
+              <thead><tr>
+                <th style="width:75px;">Nr.</th>
+                <th style="width:100px;">Datums</th>
+                <th>Iesnieguma nosaukums</th>
+                <th style="width:80px;">Personu sk.</th>
+                <th style="width:90px;">Apstrādāto sk.</th>
+                <th style="width:75px;">Piešķirts</th>
+                <th style="width:75px;">Atteikts</th>
+                <th style="width:85px;">Statuss</th>
+              </tr></thead>
+              <tbody id="prevAppsTbody"><tr class="er"><td colspan="8">Nav iepriekšēju iesniegumu no šī darba devēja.</td></tr></tbody>
+            </table>
+
+            <hr class="sep">
+
+            <!-- Sagatavotie lēmumi -->
+            <div class="sec-t" style="margin-top:6px;">Sagatavotie lēmumi</div>
             <table class="wt" id="cLemumiTbl">
               <thead><tr>
                 <th style="width:130px;">Reģistrācijas datums</th>
                 <th>Atbildes dokumenta veids</th>
-                <th style="width:110px;"></th>
+                <th style="width:120px;"></th>
               </tr></thead>
               <tbody id="cLemumiTbody">
                 <tr class="er"><td colspan="3">Nav sagatavotu lēmumu.</td></tr>
@@ -821,32 +856,17 @@ fieldset.g legend{
             <div class="sec-t">Sagatavotās atbildes</div>
             <table class="wt"><thead><tr>
               <th style="width:18px;"></th>
-              <th style="width:130px;">Sagatavošanas datums</th>
-              <th style="width:145px;">Reģistrācijas numurs</th>
+              <th style="width:150px;">Reģistrācijas numurs</th>
               <th>Dokumenta nosaukums</th>
-              <th style="width:115px;">Nosūtīšanas datums</th>
               <th style="width:90px;">Periods no</th>
               <th style="width:90px;">Periods līdz</th>
+              <th style="width:130px;">Pārtraukšanas datums</th>
             </tr></thead><tbody id="pRespTbody"></tbody></table>
             <div style="display:flex;gap:4px;margin-top:4px;">
               <button class="btn sm pr" onclick="viewSelectedResp('p')">Apskatīt atbildi</button>
               <button class="btn sm pr" onclick="deleteDocument()">Anulēt</button>
             </div>
 
-            <hr class="sep" style="margin:8px 0;">
-            <div class="sec-t">Pārtraukuma datums</div>
-            <table class="wt">
-              <thead><tr>
-                <th style="width:130px;">Pārtraukuma datums</th>
-                <th style="width:190px;">Pamatojums</th>
-                <th>Dok. Nr.</th>
-              </tr></thead>
-              <tbody id="pBreakPeriodsTbody"></tbody>
-            </table>
-            <div style="display:flex;gap:4px;margin-top:4px;">
-              <button class="btn sm pr" onclick="viewDocument()">Apskatīt dokumentu</button>
-              <button class="btn sm pr" style="color:#6a1a1a;" onclick="deleteSelectedBreakPeriod()">Dzēst pārtraukuma periodu</button>
-            </div>
 
           </div>
 
@@ -857,19 +877,25 @@ fieldset.g legend{
 
             <!-- Block 1: Izsniegtie A1 sertifikāti -->
             <div class="sec-t">Izsniegtie A1 sertifikāti</div>
-            <table class="wt" style="margin-bottom:5px;">
-              <thead><tr>
-                <th style="width:130px;">Sagatavošanas datums</th>
-                <th style="width:110px;">Periods no</th>
-                <th style="width:110px;">Periods līdz</th>
-                <th style="width:130px;">Pārtraukšanas datums</th>
-                <th>Piezīme</th>
-              </tr></thead>
-              <tbody id="pA1IsznTbody">
-                <tr><td>15.03.2026</td><td>01.04.2026</td><td>30.09.2026</td><td>—</td><td>A1 sertifikāts — Zviedrija (SE)</td></tr>
-                <tr><td>10.04.2025</td><td>01.05.2025</td><td>31.10.2025</td><td>—</td><td>A1 sertifikāts — Vācija (DE)</td></tr>
-              </tbody>
-            </table>
+            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
+              <table class="wt" style="margin:0;">
+                <thead><tr>
+                  <th style="width:130px;">Sagatavošanas datums</th>
+                  <th style="width:110px;">Periods no</th>
+                  <th style="width:110px;">Periods līdz</th>
+                  <th style="width:140px;">Pārtraukšanas datums</th>
+                  <th>Piezīme</th>
+                </tr></thead>
+              </table>
+              <div style="min-height:84px;max-height:130px;overflow-y:auto;">
+                <table class="wt" style="margin:0;">
+                  <tbody id="pA1IsznTbody">
+                    <tr><td>15.03.2026</td><td>01.04.2026</td><td>30.09.2026</td><td>—</td><td>A1 sertifikāts — Zviedrija (SE)</td></tr>
+                    <tr><td>10.04.2025</td><td>01.05.2025</td><td>31.10.2025</td><td>—</td><td>A1 sertifikāts — Vācija (DE)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
             <div style="margin-bottom:10px;">
               <button class="btn sm pr" onclick="viewDocument()">Apskatīt dokumentu</button>
             </div>
@@ -878,17 +904,23 @@ fieldset.g legend{
 
             <!-- Block 2: Saņemtie A1 sertifikāti -->
             <div class="sec-t" style="margin-top:7px;">Saņemtie A1 sertifikāti</div>
-            <table class="wt" style="margin-bottom:5px;">
-              <thead><tr>
-                <th style="width:130px;">Saņemšanas datums</th>
-                <th style="width:110px;">Periods no</th>
-                <th style="width:110px;">Periods līdz</th>
-                <th>Piezīme</th>
-              </tr></thead>
-              <tbody id="pA1SanTbody">
-                <tr class="er"><td colspan="4">Nav saņemtu A1 sertifikātu.</td></tr>
-              </tbody>
-            </table>
+            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
+              <table class="wt" style="margin:0;">
+                <thead><tr>
+                  <th style="width:130px;">Saņemšanas datums</th>
+                  <th style="width:110px;">Periods no</th>
+                  <th style="width:110px;">Periods līdz</th>
+                  <th>Piezīme</th>
+                </tr></thead>
+              </table>
+              <div style="min-height:84px;max-height:130px;overflow-y:auto;">
+                <table class="wt" style="margin:0;">
+                  <tbody id="pA1SanTbody">
+                    <tr class="er"><td colspan="4">Nav saņemtu A1 sertifikātu.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
             <div style="margin-bottom:10px;">
               <button class="btn sm pr" onclick="viewDocument()">Apskatīt dokumentu</button>
             </div>
@@ -897,15 +929,21 @@ fieldset.g legend{
 
             <!-- Block 3: Atteikumi izsniegt A1 sertifikātu -->
             <div class="sec-t" style="margin-top:7px;">Atteikumi izsniegt A1 sertifikātu</div>
-            <table class="wt" style="margin-bottom:5px;">
-              <thead><tr>
-                <th style="width:130px;">Sagatavošanas datums</th>
-                <th>Dokumenta kods un veids</th>
-              </tr></thead>
-              <tbody id="pA1AtteikTbody">
-                <tr class="er"><td colspan="2">Nav atteikumu.</td></tr>
-              </tbody>
-            </table>
+            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
+              <table class="wt" style="margin:0;">
+                <thead><tr>
+                  <th style="width:130px;">Sagatavošanas datums</th>
+                  <th>Dokumenta kods un veids</th>
+                </tr></thead>
+              </table>
+              <div style="min-height:84px;max-height:130px;overflow-y:auto;">
+                <table class="wt" style="margin:0;">
+                  <tbody id="pA1AtteikTbody">
+                    <tr class="er"><td colspan="2">Nav atteikumu.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
             <div>
               <button class="btn sm pr" onclick="viewDocument()">Apskatīt dokumentu</button>
             </div>
