@@ -564,10 +564,10 @@ fieldset.g legend{
             <table class="wt"><thead><tr>
               <th style="width:18px;"></th>
               <th style="width:130px;">Reģistrācijas numurs</th>
-              <th>Atbildes dokumenta veids</th>
-              <th style="width:180px;">Personas Uzvārds Vārds</th>
+              <th>Dokumenta nosaukums</th>
+              <th style="width:180px;">Uzvārds Vārds</th>
               <th style="width:130px;">Personas kods</th>
-              <th style="width:100px;">Nosūtīšanas datums</th>
+              <th style="width:110px;">Nosūtīšanas datums</th>
               <th style="width:90px;">Periods no</th>
               <th style="width:90px;">Periods līdz</th>
             </tr></thead><tbody id="cRespTbody"></tbody></table>
@@ -684,7 +684,6 @@ fieldset.g legend{
         <div style="display:flex;align-items:flex-end;gap:0;margin-bottom:0;padding-left:2px;">
           <div class="ctab active" id="ptab_raksturojums" onclick="switchPTab('raksturojums')">Darba ņēmēja raksturojums</div>
           <div class="ctab"        id="ptab_lemums"       onclick="switchPTab('lemums')">Lēmums</div>
-          <div class="ctab"        id="ptab_atbildes"     onclick="switchPTab('atbildes')">Sagatavotās atbildes</div>
           <div class="ctab"        id="ptab_a1sert"       onclick="switchPTab('a1sert')">A1 sertifikāti</div>
         </div>
         <div class="ctab-body">
@@ -746,12 +745,35 @@ fieldset.g legend{
           </div>
 
           <div class="ctab-panel" id="ppanel_lemums">
+
+            <!-- Lēmuma radio + statuss -->
             <div class="rg">
               <label class="ro2"><input type="radio" name="decision" value="pending" onchange="handleDecision('pending')"><span class="lwt">⏸ Atlikt (papildu info)</span></label>
               <label class="ro2"><input type="radio" name="decision" value="approve" onchange="handleDecision('approve')"><span class="lok">✔ Apstiprināt</span></label>
               <label class="ro2"><input type="radio" name="decision" value="decline" onchange="handleDecision('decline')"><span class="lno">✘ Noraidīt</span></label>
               <div style="flex:1;text-align:right;"><span id="currentStatus" class="badge bp">Apstrādē</span></div>
             </div>
+
+            <!-- ── ATLIKT ── -->
+            <div class="ds" id="pendingSection">
+              <div class="g2" style="margin-top:0;"><span class="rl" style="color:#6a3a00;font-weight:bold;">Pieprasītā info</span>
+                <select class="ws" id="atliktPieprasitaInfo" style="width:100%;">
+                  <option value="">— Izvēlieties —</option>
+                  <option>Darba līguma kopija ar darba devēju mērķa valstī</option>
+                  <option>Norīkojuma vēstules oriģināls ar parakstu</option>
+                  <option>Izziņa par sociālo apdrošināšanu iepriekšējos 2 gados</option>
+                  <option>Darba devēja reģistrācijas apliecinājums</option>
+                </select>
+              </div>
+              <div class="g2" style="margin-top:4px;"><span class="rl">Termiņš līdz</span><input class="wi" id="atliktTermins" style="width:120px;" placeholder="dd.mm.gggg"></div>
+              <div class="g2" style="margin-top:4px;"><span class="rl" style="padding-top:3px;">Piezīmes</span><textarea class="wta" id="atliktPiezimes" rows="2" style="width:100%;"></textarea></div>
+              <div style="margin-top:8px;display:flex;gap:6px;align-items:center;">
+                <button class="btn pr" onclick="saveAtlikt()">Saglabāt</button>
+                <span id="atliktSavedMsg" style="font-size:11px;color:#1a5a1a;display:none;">&#10003; Saglabāts</span>
+              </div>
+            </div>
+
+            <!-- ── APSTIPRINĀT ── -->
             <div id="approveSection">
               <div class="dp2">
                 <div style="display:grid;grid-template-columns:120px 120px 50px 120px;gap:6px;align-items:center;">
@@ -760,13 +782,13 @@ fieldset.g legend{
                   <span style="text-align:center;color:#1a4a1a;font-weight:bold;">līdz</span>
                   <input class="wi" id="approveDateTo">
                 </div>
-                <div class="g2" style="margin-top:4px;"><span class="rl">Piezīmes</span><input class="wi" placeholder="Neobligāts komentārs..."></div>
-                <div class="g2" style="margin-top:4px;">
-                  <span class="rl">Nosūtāmais dokuments</span>
-                  <select class="ws" style="width:100%;"><option value="64501">64501 — A1 nosūtāmais</option></select>
+                <div style="margin-top:8px;">
+                  <button class="btn pr" onclick="confirmDecision()">Sagatavot A1</button>
                 </div>
               </div>
             </div>
+
+            <!-- ── NORAIDĪT ── -->
             <div class="ds" id="declineSection">
               <div class="g2" style="margin-top:0;"><span class="rl" style="color:#6a1a1a;font-weight:bold;">Noraidījuma iemesls</span>
                 <select class="ws" id="declineReason" style="width:100%;" onchange="fillDeclineLaw()">
@@ -788,37 +810,20 @@ fieldset.g legend{
               <div class="g2" style="margin-top:4px;"><span class="rl" style="padding-top:3px;">Komentārs</span>
                 <textarea class="wta" id="declineKomentars" rows="3" style="width:100%;">Šo lēmumu saskaņā ar Administratīvā procesa likuma 77. panta pirmo daļu un 79. panta pirmo daļu ir tiesības apstrīdēt viena mēneša laikā no lēmuma spēkā stāšanās dienas, iesniedzot Valsts sociālās apdrošināšanas aģentūras direktoram adresētu iesniegumu.</textarea>
               </div>
-              <div class="g2" style="margin-top:4px;">
-                <span class="rl">Nosūtāmais dokuments</span>
-                <select class="ws" style="width:100%;">
-                  <option value="2406">2406 — Lēmums par atteikumu izsniegt A1 sertifikātu</option>
-                  <option value="22410">22410 — Lēmums par atteikumu izsniegt A1 sertifikātu (vairākiem darba ņēmējiem)</option>
-                </select>
+              <div style="margin-top:8px;">
+                <button class="btn pr" onclick="confirmDecision()">Sagatavot atteikumu</button>
               </div>
             </div>
-            <div class="ds" id="pendingSection">
-              <div class="g2" style="margin-top:0;"><span class="rl" style="color:#6a3a00;font-weight:bold;">Pieprasītā info</span>
-                <select class="ws" style="width:100%;">
-                  <option value="">— Izvēlieties —</option>
-                  <option>Darba līguma kopija ar darba devēju mērķa valstī</option>
-                  <option>Norīkojuma vēstules oriģināls ar parakstu</option>
-                  <option>Izziņa par sociālo apdrošināšanu iepriekšējos 2 gados</option>
-                  <option>Darba devēja reģistrācijas apliecinājums</option>
-                </select>
-              </div>
-              <div class="g2" style="margin-top:4px;"><span class="rl">Termiņš līdz</span><input class="wi" style="width:120px;" placeholder="dd.mm.gggg"></div>
-              <div class="g2" style="margin-top:4px;"><span class="rl" style="padding-top:3px;">Piezīmes</span><textarea class="wta" rows="2" style="width:100%;"></textarea></div>
-            </div>
-          </div>
 
-          <div class="ctab-panel" id="ppanel_atbildes">
+            <hr class="sep" style="margin:10px 0 6px;">
+
+            <!-- ── Sagatavotās atbildes (pārcelta no atsevišķā šķirkļa) ── -->
             <div class="sec-t">Sagatavotās atbildes</div>
             <table class="wt"><thead><tr>
               <th style="width:18px;"></th>
               <th style="width:130px;">Sagatavošanas datums</th>
               <th style="width:145px;">Reģistrācijas numurs</th>
-              <th>Atbildes dokumenta veids</th>
-              <th style="width:120px;">Nosūtīšanas veids</th>
+              <th>Dokumenta nosaukums</th>
               <th style="width:115px;">Nosūtīšanas datums</th>
               <th style="width:90px;">Periods no</th>
               <th style="width:90px;">Periods līdz</th>
@@ -827,6 +832,7 @@ fieldset.g legend{
               <button class="btn sm pr" onclick="viewSelectedResp('p')">Apskatīt atbildi</button>
               <button class="btn sm pr" onclick="deleteDocument()">Anulēt</button>
             </div>
+
             <hr class="sep" style="margin:8px 0;">
             <div class="sec-t">Pārtraukuma datums</div>
             <table class="wt">
@@ -841,7 +847,10 @@ fieldset.g legend{
               <button class="btn sm pr" onclick="viewDocument()">Apskatīt dokumentu</button>
               <button class="btn sm pr" style="color:#6a1a1a;" onclick="deleteSelectedBreakPeriod()">Dzēst pārtraukuma periodu</button>
             </div>
+
           </div>
+
+
 
           <!-- TAB: A1 sertifikāti -->
           <div class="ctab-panel" id="ppanel_a1sert">
@@ -1365,7 +1374,7 @@ function logGaita(type,note,user){
 }
 
 function switchPTab(name){
-  ['raksturojums','lemums','atbildes','a1sert'].forEach(function(t){
+  ['raksturojums','lemums','a1sert'].forEach(function(t){
     document.getElementById('ptab_'+t).className='ctab'+(t===name?' active':'');
     document.getElementById('ppanel_'+t).className='ctab-panel'+(t===name?' active':'');
   });
