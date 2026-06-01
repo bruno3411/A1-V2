@@ -467,13 +467,22 @@ fieldset.g legend{
 
           <!-- TAB: Dokumenti -->
           <div class="ctab-panel active" id="cpanel_docs">
-            <table class="wt"><thead><tr>
-              <th style="width:130px;">Reģistrācijas datums</th>
-              <th style="width:130px;">Reģ. numurs</th>
-              <th style="width:280px;">Dokumenta veids un nosaukums</th>
-              <th>Datnes nosaukums</th>
-            </tr></thead><tbody id="cDocsTbody"></tbody></table>
-            <div style="display:flex;gap:4px;margin-top:6px;">
+            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
+              <table class="wt" style="margin:0;">
+                <thead><tr>
+                  <th style="width:130px;">Reģistrācijas datums</th>
+                  <th style="width:145px;">Reģ. numurs</th>
+                  <th style="width:300px;">Dokumenta veids un nosaukums</th>
+                  <th>Datnes nosaukums</th>
+                </tr></thead>
+              </table>
+              <div style="min-height:104px;max-height:104px;overflow-y:auto;">
+                <table class="wt" style="margin:0;">
+                  <tbody id="cDocsTbody"></tbody>
+                </table>
+              </div>
+            </div>
+            <div style="display:flex;gap:4px;">
               <button class="btn pr" onclick="viewDocument()">Apskatīt dokumentu</button>
               <button class="btn nw" onclick="openRegDocModal()">+ Pievienot reģistrētu dokumentu</button>
             </div>
@@ -581,15 +590,24 @@ fieldset.g legend{
 
           <!-- TAB: Atbildes -->
           <div class="ctab-panel" id="cpanel_resp">
-            <table class="wt"><thead><tr>
-              <th style="width:18px;"></th>
-              <th style="width:110px;">Reģ. datums</th>
-              <th style="width:155px;">Reģ. numurs</th>
-              <th style="width:230px;">Dokumenta veids un nosaukums</th>
-              <th style="width:120px;">Personas kods</th>
-              <th>Personas Uzvārds Vārds</th>
-            </tr></thead><tbody id="cRespTbody"></tbody></table>
-            <div style="display:flex;gap:4px;margin-top:6px;">
+            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
+              <table class="wt" style="margin:0;">
+                <thead><tr>
+                  <th style="width:18px;"></th>
+                  <th style="width:110px;">Reģ. datums</th>
+                  <th style="width:155px;">Reģ. numurs</th>
+                  <th style="width:230px;">Dokumenta veids un nosaukums</th>
+                  <th style="width:120px;">Personas kods</th>
+                  <th>Personas Uzvārds Vārds</th>
+                </tr></thead>
+              </table>
+              <div style="min-height:208px;max-height:208px;overflow-y:auto;">
+                <table class="wt" style="margin:0;">
+                  <tbody id="cRespTbody"></tbody>
+                </table>
+              </div>
+            </div>
+            <div style="display:flex;gap:4px;">
               <button class="btn pr" onclick="viewSelectedResp('c')">Apskatīt atbildi</button>
               <button class="btn nw" onclick="openNewRespModal()">+ Pievienot atbildi</button>
             </div>
@@ -630,37 +648,49 @@ fieldset.g legend{
 
             <!-- Iepriekš saņemtie iesniegumi — sākumā -->
             <div class="sec-t">Iepriekš saņemtie iesniegumi no šī darba devēja</div>
-            <table class="wt" style="margin-bottom:6px;">
-              <thead><tr>
-                <th style="width:75px;">Nr.</th>
-                <th style="width:100px;">Datums</th>
-                <th>Iesnieguma nosaukums</th>
-                <th style="width:80px;">Personu sk.</th>
-                <th style="width:90px;">Apstrādāto sk.</th>
-                <th style="width:75px;">Piešķirts</th>
-                <th style="width:75px;">Atteikts</th>
-                <th style="width:85px;">Statuss</th>
-              </tr></thead>
-              <tbody id="prevAppsTbody"><tr class="er"><td colspan="8">Nav iepriekšēju iesniegumu no šī darba devēja.</td></tr></tbody>
-            </table>
+            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:6px;">
+              <table class="wt" style="margin:0;">
+                <thead><tr>
+                  <th style="width:75px;">Nr.</th>
+                  <th style="width:100px;">Datums</th>
+                  <th>Iesnieguma nosaukums</th>
+                  <th style="width:80px;">Personu sk.</th>
+                  <th style="width:90px;">Apstrādāto sk.</th>
+                  <th style="width:75px;">Piešķirts</th>
+                  <th style="width:75px;">Atteikts</th>
+                  <th style="width:85px;">Statuss</th>
+                </tr></thead>
+              </table>
+              <div style="min-height:78px;max-height:78px;overflow-y:auto;">
+                <table class="wt" style="margin:0;">
+                  <tbody id="prevAppsTbody"><tr class="er"><td colspan="8">Nav iepriekšēju iesniegumu no šī darba devēja.</td></tr></tbody>
+                </table>
+              </div>
+            </div>
 
             <hr class="sep">
 
             <!-- Sagatavotie lēmumi -->
             <div class="sec-t" style="margin-top:6px;">Sagatavotie lēmumi</div>
-            <table class="wt" id="cLemumiTbl">
-              <thead><tr>
-                <th style="width:110px;">Reģ. datums</th>
-                <th style="width:145px;">Reģ. numurs</th>
-                <th style="width:240px;">Dokumenta veids un nosaukums</th>
-                <th style="width:120px;">Personas kods</th>
-                <th>Personas Uzvārds Vārds</th>
-                <th style="width:120px;"></th>
-              </tr></thead>
-              <tbody id="cLemumiTbody">
-                <tr class="er"><td colspan="6">Nav sagatavotu lēmumu.</td></tr>
-              </tbody>
-            </table>
+            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;">
+              <table class="wt" id="cLemumiTbl" style="margin:0;">
+                <thead><tr>
+                  <th style="width:110px;">Reģ. datums</th>
+                  <th style="width:145px;">Reģ. numurs</th>
+                  <th style="width:240px;">Dokumenta veids un nosaukums</th>
+                  <th style="width:120px;">Personas kods</th>
+                  <th>Personas Uzvārds Vārds</th>
+                  <th style="width:120px;"></th>
+                </tr></thead>
+              </table>
+              <div style="min-height:156px;max-height:156px;overflow-y:auto;">
+                <table class="wt" style="margin:0;">
+                  <tbody id="cLemumiTbody">
+                    <tr class="er"><td colspan="6">Nav sagatavotu lēmumu.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -1192,10 +1222,10 @@ var apps=[
      {name:'BĒRZIŅŠ JĀNIS',kods:'311111-11113',valsts:'Polija (PL)',veids:'Sezonālais darbs',no:'01.06.2026',lidz:'31.08.2026',devejs:'Kreiss Sp.z.o.o., Varšava',iesniegts:'13.04.2026',status:'new',inspector:''}
    ],
    docs:[
-     {name:'darba_ligums_ralf.pdf',size:'245 KB',descr:'Darba līguma kopija',date:'13.04.2026'},
-     {name:'norikojums_DE_ralf.pdf',size:'118 KB',descr:'Norīkojuma vēstule uz Vāciju',date:'13.04.2026'}
+     {name:'darba_ligums_ralf.pdf',size:'245 KB',descr:'D14074 — Darba līgumi',date:'13.04.2026',regNr:'2026/11724001'},
+     {name:'norikojums_DE_ralf.pdf',size:'118 KB',descr:'D14076 — Citi dokumenti',date:'13.04.2026',regNr:'2026/11724002'}
    ],
-   responses:[{prepDate:'14.04.2026 10:22',regNr:'ATB-2026-11724-01',docType:'A1 sertifikāts (64501)',sendType:'E-pasts',sendDate:'14.04.2026',persons:['291011-12345']}],
+   responses:[{prepDate:'14.04.2026 10:22',regNr:'ATB-2026-11724-01',docType:'A1 sertifikāts (64501)',sendType:'E-pasts',sendDate:'14.04.2026',persons:['291011-12345']},{prepDate:'15.04.2026 09:00',regNr:'ATB-2026-11724-02',docType:'A1 sertifikāts (64501)',sendType:'E-pasts',sendDate:'15.04.2026',persons:['311111-11112']},{prepDate:'16.04.2026 11:30',regNr:'ATB-2026-11724-03',docType:'Noraidījuma lēmums (2406)',sendType:'E-pasts',sendDate:'16.04.2026',persons:['311111-11113']}],
    gaita:[
      {dt:'13.04.2026 08:14',user:'SISTEMA',type:'reg',note:'E-iesniegums saņemts no portāla latvija.lv'},
      {dt:'13.04.2026 08:14',user:'SISTEMA',type:'doc',note:'Pievienoti 2 dokumenti: darba_ligums_ralf.pdf, norikojums_DE_ralf.pdf'},
