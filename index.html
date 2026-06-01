@@ -468,11 +468,10 @@ fieldset.g legend{
           <!-- TAB: Dokumenti -->
           <div class="ctab-panel active" id="cpanel_docs">
             <table class="wt"><thead><tr>
-              <th style="width:55px;">Kods</th>
-              <th>Nosaukums</th>
-              <th style="width:260px;">Dokumenta nosaukums</th>
-              <th style="width:120px;">Reģ. numurs</th>
-              <th style="width:95px;">Saņemšanas datums</th>
+              <th style="width:110px;">Datums</th>
+              <th style="width:130px;">Reģ. numurs</th>
+              <th style="width:280px;">Dokumenta veids un nosaukums</th>
+              <th>Datnes nosaukums</th>
             </tr></thead><tbody id="cDocsTbody"></tbody></table>
             <div style="display:flex;gap:4px;margin-top:6px;">
               <button class="btn pr" onclick="viewDocument()">Apskatīt dokumentu</button>
@@ -578,13 +577,13 @@ fieldset.g legend{
           <div class="ctab-panel" id="cpanel_resp">
             <table class="wt"><thead><tr>
               <th style="width:18px;"></th>
-              <th style="width:130px;">Reģistrācijas numurs</th>
-              <th>Dokumenta nosaukums</th>
-              <th style="width:180px;">Uzvārds Vārds</th>
+              <th style="width:160px;">Persona (Uzvārds Vārds)</th>
               <th style="width:130px;">Personas kods</th>
-              <th style="width:110px;">Nosūtīšanas datums</th>
-              <th style="width:90px;">Periods no</th>
-              <th style="width:90px;">Periods līdz</th>
+              <th style="width:100px;">Periods no</th>
+              <th style="width:100px;">Periods līdz</th>
+              <th style="width:130px;">Pārtraukšanas datums</th>
+              <th style="width:120px;">Sagatavošanas datums</th>
+              <th>Dokumenta kods, nosaukums</th>
             </tr></thead><tbody id="cRespTbody"></tbody></table>
             <div style="display:flex;gap:4px;margin-top:6px;">
               <button class="btn pr" onclick="viewSelectedResp('c')">Apskatīt atbildi</button>
@@ -880,18 +879,20 @@ fieldset.g legend{
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
               <table class="wt" style="margin:0;">
                 <thead><tr>
-                  <th style="width:130px;">Sagatavošanas datums</th>
-                  <th style="width:110px;">Periods no</th>
-                  <th style="width:110px;">Periods līdz</th>
-                  <th style="width:140px;">Pārtraukšanas datums</th>
-                  <th>Piezīme</th>
+                  <th style="width:120px;">Sagatavošanas datums</th>
+                  <th style="width:200px;">Dokumenta kods, nosaukums</th>
+                  <th style="width:100px;">Periods no</th>
+                  <th style="width:100px;">Periods līdz</th>
+                  <th style="width:130px;">Pārtraukšanas datums</th>
+                  <th style="width:120px;">Sagatavošanas datums</th>
+                  <th>Dokumenta kods, nosaukums</th>
                 </tr></thead>
               </table>
               <div style="min-height:84px;max-height:130px;overflow-y:auto;">
                 <table class="wt" style="margin:0;">
                   <tbody id="pA1IsznTbody">
-                    <tr><td>15.03.2026</td><td>01.04.2026</td><td>30.09.2026</td><td>—</td><td>A1 sertifikāts — Zviedrija (SE)</td></tr>
-                    <tr><td>10.04.2025</td><td>01.05.2025</td><td>31.10.2025</td><td>—</td><td>A1 sertifikāts — Vācija (DE)</td></tr>
+                    <tr><td>15.03.2026</td><td>64501 — A1 sertifikāts (SE)</td><td>01.04.2026</td><td>30.09.2026</td><td>—</td><td>—</td><td>—</td></tr>
+                    <tr><td>10.04.2025</td><td>64501 — A1 sertifikāts (DE)</td><td>01.05.2025</td><td>31.10.2025</td><td>—</td><td>—</td><td>—</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -907,16 +908,19 @@ fieldset.g legend{
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
               <table class="wt" style="margin:0;">
                 <thead><tr>
-                  <th style="width:130px;">Saņemšanas datums</th>
-                  <th style="width:110px;">Periods no</th>
-                  <th style="width:110px;">Periods līdz</th>
-                  <th>Piezīme</th>
+                  <th style="width:160px;">Persona</th>
+                  <th style="width:160px;">Darba devējs (DD)</th>
+                  <th style="width:100px;">Periods no</th>
+                  <th style="width:100px;">Periods līdz</th>
+                  <th style="width:130px;">Pārtraukšanas datums</th>
+                  <th style="width:120px;">Sagatavošanas datums</th>
+                  <th>Dokumenta kods, nosaukums</th>
                 </tr></thead>
               </table>
               <div style="min-height:84px;max-height:130px;overflow-y:auto;">
                 <table class="wt" style="margin:0;">
                   <tbody id="pA1SanTbody">
-                    <tr class="er"><td colspan="4">Nav saņemtu A1 sertifikātu.</td></tr>
+                    <tr class="er"><td colspan="7">Nav saņemtu A1 sertifikātu.</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -1589,13 +1593,15 @@ function sv(id,v){var e=document.getElementById(id);if(e)e.value=v!=null?v:'';}
 
 function renderDocs(id,docs){
   var tb=document.getElementById(id);if(!tb)return;
-  if(!docs||!docs.length){tb.innerHTML='<tr class="er"><td colspan="5">Nav pievienotu dokumentu</td></tr>';return;}
+  if(!docs||!docs.length){tb.innerHTML='<tr class="er"><td colspan="4">Nav pievienotu dokumentu</td></tr>';return;}
   tb.innerHTML=docs.map(function(d,i){
-    var kods=d.kods||(1000+i+1);
-    var regNr=d.regNr||(d.name?d.name.replace(/\.[^.]+$/,'').toUpperCase().substring(0,12):'—');
-    return '<tr><td style="text-align:center;font-size:10px;">'+kods+'</td>'+
-      '<td>&#128196; '+d.name+'</td><td style="font-size:10px;">'+(d.descr||d.name||'—')+'</td>'+
-      '<td style="font-size:10px;">'+regNr+'</td><td style="font-size:10px;">'+d.date+'</td></tr>';
+    var regNr=d.regNr||'—';
+    var docType=d.descr||d.name||'—';
+    return '<tr>'+
+      '<td style="font-size:11px;">'+(d.date||'—')+'</td>'+
+      '<td style="font-size:11px;">'+regNr+'</td>'+
+      '<td style="font-size:11px;">'+docType+'</td>'+
+      '<td style="font-size:11px;">&#128196; '+d.name+'</td></tr>';
   }).join('');
 }
 
