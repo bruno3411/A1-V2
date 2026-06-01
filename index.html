@@ -467,17 +467,16 @@ fieldset.g legend{
 
           <!-- TAB: Dokumenti -->
           <div class="ctab-panel active" id="cpanel_docs">
-            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
-              <table class="wt" style="margin:0;">
-                <thead><tr>
-                  <th style="width:130px;">Reģistrācijas datums</th>
+            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;">
+              <div style="min-height:104px;max-height:104px;overflow-y:auto;">
+                <table class="wt" style="margin:0;table-layout:fixed;width:100%;">
+                  <colgroup><col style="width:130px;"><col style="width:145px;"><col style="width:300px;"><col></colgroup>
+                  <thead style="position:sticky;top:0;z-index:1;background:#ccd4d2;">
+                    <tr><th style="width:130px;">Reģistrācijas datums</th>
                   <th style="width:145px;">Reģ. numurs</th>
                   <th style="width:300px;">Dokumenta veids un nosaukums</th>
-                  <th>Datnes nosaukums</th>
-                </tr></thead>
-              </table>
-              <div style="min-height:104px;max-height:104px;overflow-y:auto;">
-                <table class="wt" style="margin:0;">
+                  <th>Datnes nosaukums</th></tr>
+                  </thead>
                   <tbody id="cDocsTbody"></tbody>
                 </table>
               </div>
@@ -590,19 +589,17 @@ fieldset.g legend{
 
           <!-- TAB: Atbildes -->
           <div class="ctab-panel" id="cpanel_resp">
-            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
-              <table class="wt" style="margin:0;">
-                <thead><tr>
-                  <th style="width:18px;"></th>
-                  <th style="width:110px;">Reģ. datums</th>
+            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;">
+              <div style="min-height:208px;max-height:208px;overflow-y:auto;">
+                <table class="wt" style="margin:0;table-layout:fixed;width:100%;">
+                  <colgroup><col style="width:110px;"><col style="width:155px;"><col style="width:230px;"><col style="width:120px;"><col></colgroup>
+                  <thead style="position:sticky;top:0;z-index:1;background:#ccd4d2;">
+                    <tr><th style="width:110px;">Reģ. datums</th>
                   <th style="width:155px;">Reģ. numurs</th>
                   <th style="width:230px;">Dokumenta veids un nosaukums</th>
                   <th style="width:120px;">Personas kods</th>
-                  <th>Personas Uzvārds Vārds</th>
-                </tr></thead>
-              </table>
-              <div style="min-height:208px;max-height:208px;overflow-y:auto;">
-                <table class="wt" style="margin:0;">
+                  <th>Personas Uzvārds Vārds</th></tr>
+                  </thead>
                   <tbody id="cRespTbody"></tbody>
                 </table>
               </div>
@@ -649,21 +646,23 @@ fieldset.g legend{
             <!-- Iepriekš saņemtie iesniegumi — sākumā -->
             <div class="sec-t">Iepriekš saņemtie iesniegumi no šī darba devēja</div>
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:6px;">
-              <table class="wt" style="margin:0;">
-                <thead><tr>
-                  <th style="width:75px;">Nr.</th>
-                  <th style="width:100px;">Datums</th>
-                  <th>Iesnieguma nosaukums</th>
-                  <th style="width:80px;">Personu sk.</th>
-                  <th style="width:90px;">Apstrādāto sk.</th>
-                  <th style="width:75px;">Piešķirts</th>
-                  <th style="width:75px;">Atteikts</th>
-                  <th style="width:85px;">Statuss</th>
-                </tr></thead>
-              </table>
-              <div style="min-height:78px;max-height:78px;overflow-y:auto;">
-                <table class="wt" style="margin:0;">
-                  <tbody id="prevAppsTbody"><tr class="er"><td colspan="8">Nav iepriekšēju iesniegumu no šī darba devēja.</td></tr></tbody>
+              <div style="max-height:78px;overflow-y:auto;">
+                <table class="wt" style="margin:0;table-layout:fixed;width:100%;">
+                  <colgroup>
+                    <col style="width:75px;"><col style="width:100px;"><col><col style="width:80px;"><col style="width:90px;"><col style="width:75px;"><col style="width:75px;">
+                  </colgroup>
+                  <thead style="position:sticky;top:0;z-index:1;background:#ccd4d2;">
+                    <tr>
+                      <th>Nr.</th>
+                      <th>Datums</th>
+                      <th>Iesnieguma nosaukums</th>
+                      <th style="text-align:center;">Personu sk.</th>
+                      <th style="text-align:center;">Apstrādāto sk.</th>
+                      <th style="text-align:center;">Piešķirts</th>
+                      <th style="text-align:center;">Atteikts</th>
+                    </tr>
+                  </thead>
+                  <tbody id="prevAppsTbody"><tr class="er"><td colspan="7">Nav iepriekšēju iesniegumu no šī darba devēja.</td></tr></tbody>
                 </table>
               </div>
             </div>
@@ -673,18 +672,17 @@ fieldset.g legend{
             <!-- Sagatavotie lēmumi -->
             <div class="sec-t" style="margin-top:6px;">Sagatavotie lēmumi</div>
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;">
-              <table class="wt" id="cLemumiTbl" style="margin:0;">
-                <thead><tr>
-                  <th style="width:110px;">Reģ. datums</th>
+              <div style="min-height:156px;max-height:156px;overflow-y:auto;">
+                <table class="wt" style="margin:0;table-layout:fixed;width:100%;">
+                  <colgroup><col style="width:110px;"><col style="width:145px;"><col style="width:240px;"><col style="width:120px;"><col><col style="width:120px;"></colgroup>
+                  <thead style="position:sticky;top:0;z-index:1;background:#ccd4d2;">
+                    <tr><th style="width:110px;">Reģ. datums</th>
                   <th style="width:145px;">Reģ. numurs</th>
                   <th style="width:240px;">Dokumenta veids un nosaukums</th>
                   <th style="width:120px;">Personas kods</th>
                   <th>Personas Uzvārds Vārds</th>
-                  <th style="width:120px;"></th>
-                </tr></thead>
-              </table>
-              <div style="min-height:156px;max-height:156px;overflow-y:auto;">
-                <table class="wt" style="margin:0;">
+                  <th style="width:120px;"></th></tr>
+                  </thead>
                   <tbody id="cLemumiTbody">
                     <tr class="er"><td colspan="6">Nav sagatavotu lēmumu.</td></tr>
                   </tbody>
@@ -767,16 +765,13 @@ fieldset.g legend{
               <!-- LEFT: Nodarbinātības periodi — 6 rows -->
               <div style="flex:1;min-width:0;">
                 <div class="sec-t">Nodarbinātības periodi pie Darba devēja</div>
-                <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
-                  <table class="wt" style="margin:0;">
-                    <thead><tr>
-                      <th style="width:100px;">Periods no</th>
-                      <th style="width:100px;">Periods līdz</th>
-                      <th>Amats / Piezīme</th>
-                    </tr></thead>
-                  </table>
+                <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;">
                   <div style="min-height:156px;max-height:156px;overflow-y:auto;">
-                    <table class="wt" style="margin:0;">
+                    <table class="wt" style="margin:0;table-layout:fixed;width:100%;">
+                      <colgroup><col style="width:100px;"><col style="width:100px;"><col></colgroup>
+                      <thead style="position:sticky;top:0;z-index:1;background:#ccd4d2;">
+                        <tr><th>Periods no</th><th>Periods līdz</th><th>Amats / Piezīme</th></tr>
+                      </thead>
                       <tbody id="pNodarbTbody">
                         <tr><td>01.01.2024</td><td>31.12.2024</td><td>Šoferis</td></tr>
                         <tr><td>01.01.2025</td><td>31.05.2026</td><td>Šoferis</td></tr>
@@ -790,16 +785,13 @@ fieldset.g legend{
               <!-- RIGHT: Apdrošināšanas iemaksas — 6 rows -->
               <div style="flex:1;min-width:0;">
                 <div class="sec-t">Apdrošināšanas iemaksas no Darba devēja</div>
-                <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
-                  <table class="wt" style="margin:0;">
-                    <thead><tr>
-                      <th style="width:90px;">Iemaksu periods</th>
-                      <th>Iemaksu objekts</th>
-                      <th>Veiktais iemaksu objekts</th>
-                    </tr></thead>
-                  </table>
+                <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;">
                   <div style="min-height:156px;max-height:156px;overflow-y:auto;">
-                    <table class="wt" style="margin:0;">
+                    <table class="wt" style="margin:0;table-layout:fixed;width:100%;">
+                      <colgroup><col style="width:90px;"><col><col></colgroup>
+                      <thead style="position:sticky;top:0;z-index:1;background:#ccd4d2;">
+                        <tr><th>Iemaksu periods</th><th>Iemaksu objekts</th><th>Veiktais iemaksu objekts</th></tr>
+                      </thead>
                       <tbody id="pIemaksasTbody">
                         <tr><td>04.2026</td><td>1 850,00 EUR</td><td>1 850,00 EUR</td></tr>
                         <tr><td>03.2026</td><td>1 850,00 EUR</td><td>1 850,00 EUR</td></tr>
@@ -823,21 +815,18 @@ fieldset.g legend{
             <!-- Dati par uzturēšanās atļaujām — 3 rows -->
             <div class="sec-t" style="margin-top:6px;">Dati par uzturēšanās atļaujām</div>
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;">
-              <table class="wt" style="margin:0;">
-                <thead><tr>
-                  <th>Tips</th>
-                  <th style="width:140px;">Sākuma datums</th>
-                  <th style="width:140px;">Beigu datums</th>
-                </tr></thead>
-              </table>
-              <div style="min-height:78px;max-height:78px;overflow-y:auto;">
-                <table class="wt" style="margin:0;">
-                  <tbody id="pUzturTbody">
+                  <div style="min-height:78px;max-height:78px;overflow-y:auto;">
+                    <table class="wt" style="margin:0;table-layout:fixed;width:100%;">
+                      <colgroup><col><col style="width:140px;"><col style="width:140px;"></colgroup>
+                      <thead style="position:sticky;top:0;z-index:1;background:#ccd4d2;">
+                        <tr><th>Tips</th><th>Sākuma datums</th><th>Beigu datums</th></tr>
+                      </thead>
+                      <tbody id="pUzturTbody">
                     <tr class="er"><td colspan="3">Nav uzturēšanās atļauju datu.</td></tr>
                   </tbody>
-                </table>
-              </div>
-            </div>
+                    </table>
+                  </div>
+                </div>
 
           </div>
 
@@ -917,7 +906,6 @@ fieldset.g legend{
             <!-- ── Sagatavotās atbildes (pārcelta no atsevišķā šķirkļa) ── -->
             <div class="sec-t">Sagatavotās atbildes</div>
             <table class="wt"><thead><tr>
-              <th style="width:18px;"></th>
               <th style="width:150px;">Reģistrācijas numurs</th>
               <th>Dokumenta nosaukums</th>
               <th style="width:90px;">Periods no</th>
@@ -951,7 +939,7 @@ fieldset.g legend{
                   <th>Dokumenta kods, nosaukums</th>
                 </tr></thead>
               </table>
-              <div style="min-height:84px;max-height:130px;overflow-y:auto;">
+              <div style="min-height:78px;max-height:78px;overflow-y:auto;">
                 <table class="wt" style="margin:0;">
                   <tbody id="pA1IsznTbody">
                     <tr><td>15.03.2026</td><td>64501 — A1 sertifikāts (SE)</td><td>01.04.2026</td><td>30.09.2026</td><td>—</td><td>—</td><td>—</td></tr>
@@ -980,7 +968,7 @@ fieldset.g legend{
                   <th>Dokumenta kods, nosaukums</th>
                 </tr></thead>
               </table>
-              <div style="min-height:84px;max-height:130px;overflow-y:auto;">
+              <div style="min-height:78px;max-height:78px;overflow-y:auto;">
                 <table class="wt" style="margin:0;">
                   <tbody id="pA1SanTbody">
                     <tr class="er"><td colspan="7">Nav saņemtu A1 sertifikātu.</td></tr>
@@ -1003,7 +991,7 @@ fieldset.g legend{
                   <th>Dokumenta kods un veids</th>
                 </tr></thead>
               </table>
-              <div style="min-height:84px;max-height:130px;overflow-y:auto;">
+              <div style="min-height:78px;max-height:78px;overflow-y:auto;">
                 <table class="wt" style="margin:0;">
                   <tbody id="pA1AtteikTbody">
                     <tr class="er"><td colspan="2">Nav atteikumu.</td></tr>
@@ -1419,6 +1407,8 @@ function onSelectPerson(app,p){
   selectedRespIdx.p=-1;
   selectedBreakPeriodIdx=-1;
   renderPersonBreakPeriods(p);
+  padTbody('pNodarbTbody',3,6);
+  padTbody('pUzturTbody',3,3);
   setStatus('Izvēlēta persona: '+p.kods+' '+p.name+' ('+app.company+')');
   document.getElementById('statusSel').textContent=p.kods;
 }
@@ -1503,7 +1493,7 @@ function switchCTab(name){
 function renderPrevApps(app){
   var tb=document.getElementById('prevAppsTbody');if(!tb)return;
   var others=apps.filter(function(a){return a.id!==app.id&&a.regNr===app.regNr;});
-  if(!others.length){tb.innerHTML='<tr class="er"><td colspan="8">Nav iepriekšēju iesniegumu no šī darba devēja.</td></tr>';return;}
+  if(!others.length){tb.innerHTML='<tr class="er"><td colspan="7">Nav iepriekšēju iesniegumu no šī darba devēja.</td></tr>';return;}
   var rows=others.map(function(a){
     var tr=document.createElement('tr');tr.style.cursor='pointer';
     var a1count=a.persons.filter(function(p){return p.status==='ok';}).length;
@@ -1513,11 +1503,11 @@ function renderPrevApps(app){
       '<td style="text-align:center;">'+a.persons.length+'</td>'+
       '<td style="text-align:center;">'+apstradati+'</td>'+
       '<td style="text-align:center;">'+a1count+'</td>'+
-      '<td style="text-align:center;">'+atteikts+'</td>'+
-      '<td><span class="badge '+sBadge[a.status]+'">'+sLbl[a.status]+'</span></td>';
+      '<td style="text-align:center;">'+atteikts+'</td>';
     tr.addEventListener('click',function(){onSelectApp(getAppById(a.id));});
     return tr.outerHTML;
   });
+  while(rows.length<3)rows.push('<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
   tb.innerHTML=rows.join('');
 }
 function getAppById(id){return apps.find(function(a){return a.id===id;});}
@@ -1668,8 +1658,13 @@ function sv(id,v){var e=document.getElementById(id);if(e)e.value=v!=null?v:'';}
 
 function renderDocs(id,docs){
   var tb=document.getElementById(id);if(!tb)return;
-  if(!docs||!docs.length){tb.innerHTML='<tr class="er"><td colspan="4">Nav pievienotu dokumentu</td></tr>';return;}
-  tb.innerHTML=docs.map(function(d,i){
+  var MIN=4;
+  if(!docs||!docs.length){
+    var empty='';
+    for(var e=0;e<MIN;e++)empty+='<tr><td></td><td></td><td></td><td></td></tr>';
+    tb.innerHTML=empty;return;
+  }
+  var rows=docs.map(function(d,i){
     var regNr=d.regNr||'—';
     var docType=d.descr||d.name||'—';
     return '<tr>'+
@@ -1677,27 +1672,56 @@ function renderDocs(id,docs){
       '<td style="font-size:11px;">'+regNr+'</td>'+
       '<td style="font-size:11px;">'+docType+'</td>'+
       '<td style="font-size:11px;">&#128196; '+d.name+'</td></tr>';
-  }).join('');
+  });
+  while(rows.length<MIN)rows.push('<tr><td></td><td></td><td></td><td></td></tr>');
+  tb.innerHTML=rows.join('');
 }
 
 function renderResponses(tbodyId,resp,app,panel){
   var tb=document.getElementById(tbodyId);
-  if(!resp||!resp.length){tb.innerHTML='<tr class="er"><td colspan="8">Nav sagatavotu atbilžu</td></tr>';return;}
+  var isCo=(panel==='c');
+  if(!resp||!resp.length){
+    var cols=isCo?6:6;
+    tb.innerHTML='<tr class="er"><td colspan="'+cols+'">Nav sagatavotu atbilžu</td></tr>';
+    return;
+  }
   tb.innerHTML='';
-  resp.forEach(function(r,idx){
-    var tr=document.createElement('tr');tr.id='resp_'+panel+'_'+idx;
-    tr.innerHTML='<td style="text-align:center;"><span style="cursor:pointer;font-size:10px;" onclick="toggleRespPersons(\''+panel+'\','+idx+')">&#9658;</span></td>'+
-      '<td>'+r.prepDate+'</td><td>'+r.regNr+'</td><td>'+r.docType+'</td>'+
-      '<td>'+r.sendType+'</td><td>'+r.sendDate+'</td>'+
-      '<td style="font-size:10px;">'+(r.periodFrom||'—')+'</td><td style="font-size:10px;">'+(r.periodTo||'—')+'</td>';
-    tr.addEventListener('click',function(){selectedRespIdx[panel]=idx;highlightResp(panel,idx);});
-    tb.appendChild(tr);
-    var expTr=document.createElement('tr');expTr.id='resp_exp_'+panel+'_'+idx;expTr.className='resp-exp-row';expTr.style.display='none';
-    var pList=r.persons&&app?r.persons.map(function(kods){var found=app.persons.find(function(pp){return pp.kods===kods;});return found||null;}).filter(Boolean):[];
-    var pHtml=pList.length?pList.map(function(p){return '<div class="resp-person-row"><span class="sd '+sDot[p.status]+'" style="flex-shrink:0;"></span><span style="min-width:115px;font-weight:bold;">'+p.kods+'</span><span style="flex:1;">'+p.name+'</span><span style="min-width:110px;color:#4a6a68;">'+p.valsts+'</span><span class="badge '+sBadge[p.status]+'" style="margin-left:4px;">'+sLbl[p.status]+'</span></div>';}).join(''):'<div style="color:#7a9a98;font-style:italic;padding:4px;">Nav piesaistītu personu</div>';
-    expTr.innerHTML='<td colspan="8"><div class="resp-persons">'+pHtml+'</div></td>';
-    tb.appendChild(expTr);
-  });
+  if(isCo){
+    // Company — Variant 3: Reģ.datums | Reģ.numurs | Dok.veids | Personas kods | Personas Uzvārds Vārds
+    var MIN_C=8; var cCount=0;
+    resp.forEach(function(r,idx){
+      var persons=r.persons&&r.persons.length?r.persons:[''];
+      persons.forEach(function(kods,pi){
+        var p=app&&kods?app.persons.find(function(pp){return pp.kods===kods;}):null;
+        var rowId='resp_c_'+idx+'_'+pi;
+        var tr=document.createElement('tr');tr.id=rowId;
+        tr.innerHTML=
+          '<td style="font-size:11px;">'+(r.sendDate||r.prepDate||'—')+'</td>'+
+          '<td style="font-size:11px;">'+(r.regNr||'—')+'</td>'+
+          '<td style="font-size:11px;">'+r.docType+'</td>'+
+          '<td style="font-size:11px;">'+(p?p.kods:kods||'—')+'</td>'+
+          '<td style="font-size:11px;">'+(p?p.name:'—')+'</td>';
+        tr.addEventListener('click',function(){selectedRespIdx[panel]=idx;highlightResp(panel,rowId);});
+        tb.appendChild(tr);cCount++;
+      });
+    });
+    while(cCount<MIN_C){var ep=document.createElement('tr');ep.innerHTML='<td></td><td></td><td></td><td></td><td></td>';tb.appendChild(ep);cCount++;}
+  } else {
+    // Person (Lēmums tab): Reģ.numurs | Dok.nosaukums | Periods no | Periods līdz | Pārtraukšanas datums
+    resp.forEach(function(r,idx){
+      var tr=document.createElement('tr');tr.id='resp_p_'+idx;
+      tr.innerHTML=
+        '<td style="font-size:11px;">'+(r.regNr||'—')+'</td>'+
+        '<td style="font-size:11px;">'+r.docType+'</td>'+
+        '<td style="font-size:11px;">'+(r.periodFrom||'—')+'</td>'+
+        '<td style="font-size:11px;">'+(r.periodTo||'—')+'</td>'+
+        '<td style="font-size:11px;">'+(r.breakDate||'—')+'</td>';
+      tr.addEventListener('click',function(){selectedRespIdx[panel]=idx;highlightResp(panel,'resp_p_'+idx);});
+      tb.appendChild(tr);
+    });
+    var MIN_P=5;var pCount=resp.length;
+    while(pCount<MIN_P){var ep=document.createElement('tr');ep.innerHTML='<td></td><td></td><td></td><td></td><td></td>';tb.appendChild(ep);pCount++;}
+  }
 }
 
 function toggleRespPersons(panel,idx){
@@ -1815,6 +1839,11 @@ function viewImage(){viewApplication();}
 function viewDocument(){if(!selApp)return;showInfo('Dokumenta apskate','Dokuments tiek atvērts skatīšanai...');}
 function deleteDocument(){if(!selApp)return;if(confirm('Dzēst izvēlēto dokumentu?'))showNotif('Dzēsts','Dokuments dzēsts.');}
 
+function padTbody(id, cols, min){
+  var tb=document.getElementById(id);if(!tb)return;
+  var rows=tb.querySelectorAll('tr:not(.er)').length;
+  while(rows<min){var tr=document.createElement('tr');var cells='';for(var i=0;i<cols;i++)cells+='<td></td>';tr.innerHTML=cells;tb.appendChild(tr);rows++;}
+}
 var EU_COUNTRIES=['Austrija','Beļģija','Bulgārija','Čehija','Dānija','Francija','Grieķija','Horvātija','Igaunija','Itālija','Īrija','Islande','Kipra','Latvija','Apvienotā Karaliste','Lietuva','Lihtenšteina','Luksemburga','Malta','Nīderlande','Norvēģija','Polija','Portugāle','Rumānija','Slovākija','Slovēnija','Somija','Spānija','Šveice','Ungārija','Vācija','Zviedrija'];
 function renderPersonCountries(p){
   var box=document.getElementById('pValstsList');if(!box)return;
@@ -1927,6 +1956,9 @@ function renderLemumi(app){
       tb.appendChild(tr);
     });
   });
+  var MIN_L=6;var lCount=0;
+  resp.forEach(function(r){lCount+=(r.persons&&r.persons.length?r.persons.length:1);});
+  while(lCount<MIN_L){var ep=document.createElement('tr');ep.innerHTML='<td></td><td></td><td></td><td></td><td></td><td></td>';document.getElementById('cLemumiTbody').appendChild(ep);lCount++;}
 }
 
 function viewLemumsResp(idx){
