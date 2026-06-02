@@ -79,7 +79,6 @@ body{
 .lg{display:flex;align-items:center;gap:3px;}
 
 /* ── BUTTONS ── exactly doc6 style ── */
-/* Active / clickable */
 .btn.pr,.btn.nw,.btn.act{
   height:26px;
   background:#c4c8c6;
@@ -103,7 +102,6 @@ body{
 .btn.pr:hover,.btn.nw:hover,.btn.act:hover{background:#cacece;}
 .btn.pr:active,.btn.nw:active,.btn.act:active{border-color:#8c9290 #e2e6e4 #e2e6e4 #8c9290;box-shadow:none;}
 
-/* Inactive / disabled */
 .btn,.btn.off{
   height:26px;
   background:#c0c4c2;
@@ -144,7 +142,7 @@ fieldset.g legend{
   line-height:1;
 }
 
-/* ── INPUTS — all tinted like doc6 cells ── */
+/* ── INPUTS ── */
 .wi,.ws,.wta{
   height:26px;
   border:1px solid #7eaeac;
@@ -489,7 +487,6 @@ fieldset.g legend{
 
           <!-- TAB: Darba devēja raksturojums -->
           <div class="ctab-panel" id="cpanel_devejs">
-            <!-- Darbinieku skaits -->
             <div style="display:flex;align-items:center;gap:16px;margin-bottom:7px;flex-wrap:wrap;">
               <div style="display:flex;align-items:center;gap:8px;">
                 <span class="rl" style="white-space:nowrap;">Darbinieku skaits kopā</span>
@@ -500,18 +497,16 @@ fieldset.g legend{
                 <input class="wi ro" id="devDarbAdmin" style="width:80px;" placeholder="0" readonly>
               </div>
             </div>
-            <!-- Apdrošināšanas iemaksas — pēdējie 12 mēneši ar scrollbar -->
             <div class="sec-t">Apdrošināšanas iemaksas — pēdējie 12 mēneši</div>
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
-              <table class="wt" style="margin:0;">
-                <thead><tr>
-                  <th style="width:110px;">Iemaksu periods</th>
-                  <th style="width:200px;">Iemaksu objekts</th>
-                  <th>Veiktais iemaksu objekts</th>
-                </tr></thead>
-              </table>
               <div style="max-height:156px;overflow-y:auto;">
-                <table class="wt" id="devIemaksasTbl" style="margin:0;">
+                <table class="wt" id="devIemaksasTbl" style="margin:0;table-layout:fixed;width:100%;">
+                  <colgroup><col style="width:110px;"><col style="width:200px;"><col></colgroup>
+                  <thead style="position:sticky;top:0;z-index:1;background:#ccd4d2;"><tr>
+                    <th>Iemaksu periods</th>
+                    <th>Iemaksu objekts</th>
+                    <th>Veiktais iemaksu objekts</th>
+                  </tr></thead>
                   <tbody id="devIemaksasTbody">
                     <tr><td>04.2026</td><td>1 850,00 EUR</td><td>1 850,00 EUR</td></tr>
                     <tr><td>03.2026</td><td>1 850,00 EUR</td><td>1 850,00 EUR</td></tr>
@@ -643,10 +638,10 @@ fieldset.g legend{
           <!-- TAB: LĒMUMI -->
           <div class="ctab-panel" id="cpanel_lemumi">
 
-            <!-- Iepriekš saņemtie iesniegumi — sākumā -->
+            <!-- Iepriekš saņemtie iesniegumi -->
             <div class="sec-t">Iepriekš saņemtie iesniegumi no šī darba devēja</div>
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:6px;">
-              <div style="max-height:78px;overflow-y:auto;">
+              <div style="max-height:156px;overflow-y:auto;">
                 <table class="wt" style="margin:0;table-layout:fixed;width:100%;">
                   <colgroup>
                     <col style="width:75px;"><col style="width:100px;"><col><col style="width:80px;"><col style="width:90px;"><col style="width:75px;"><col style="width:75px;">
@@ -674,22 +669,24 @@ fieldset.g legend{
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;">
               <div style="min-height:156px;max-height:156px;overflow-y:auto;">
                 <table class="wt" style="margin:0;table-layout:fixed;width:100%;">
-                  <colgroup><col style="width:110px;"><col style="width:145px;"><col style="width:240px;"><col style="width:120px;"><col><col style="width:120px;"></colgroup>
+                  <colgroup><col style="width:110px;"><col style="width:145px;"><col style="width:240px;"><col style="width:120px;"><col></colgroup>
                   <thead style="position:sticky;top:0;z-index:1;background:#ccd4d2;">
                     <tr><th style="width:110px;">Reģ. datums</th>
                   <th style="width:145px;">Reģ. numurs</th>
                   <th style="width:240px;">Dokumenta veids un nosaukums</th>
                   <th style="width:120px;">Personas kods</th>
-                  <th>Personas Uzvārds Vārds</th>
-                  <th style="width:120px;"></th></tr>
+                  <th>Personas Uzvārds Vārds</th></tr>
                   </thead>
                   <tbody id="cLemumiTbody">
-                    <tr class="er"><td colspan="6">Nav sagatavotu lēmumu.</td></tr>
+                    <tr class="er"><td colspan="5">Nav sagatavotu lēmumu.</td></tr>
                   </tbody>
                 </table>
               </div>
             </div>
-          </div>
+            <div style="display:flex;gap:4px;margin-top:4px;">
+              <button class="btn sm pr" onclick="viewLemumsResp(selectedLemumsIdx)">Apskatīt atbildi</button>
+            </div>
+          </div><!-- /cpanel_lemumi -->
 
         </div>
       </div>
@@ -758,11 +755,7 @@ fieldset.g legend{
         <div class="ctab-body">
 
           <div class="ctab-panel active" id="ppanel_raksturojums">
-
-            <!-- Two blocks side by side -->
             <div style="display:flex;gap:8px;margin-bottom:8px;">
-
-              <!-- LEFT: Nodarbinātības periodi — 6 rows -->
               <div style="flex:1;min-width:0;">
                 <div class="sec-t">Nodarbinātības periodi pie Darba devēja</div>
                 <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;">
@@ -781,8 +774,6 @@ fieldset.g legend{
                 </div>
                 <button class="btn sm pr" onclick="viewDocument()">Apskatīt apdrošināšanas periodus</button>
               </div>
-
-              <!-- RIGHT: Apdrošināšanas iemaksas — 6 rows -->
               <div style="flex:1;min-width:0;">
                 <div class="sec-t">Apdrošināšanas iemaksas no Darba devēja</div>
                 <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;">
@@ -807,32 +798,29 @@ fieldset.g legend{
                 </div>
                 <button class="btn sm pr" onclick="viewDocument()">Apskatīt apdrošināšanas iemaksas</button>
               </div>
-
-            </div><!-- end side-by-side -->
+            </div>
 
             <hr class="sep">
 
-            <!-- Dati par uzturēšanās atļaujām — 3 rows -->
             <div class="sec-t" style="margin-top:6px;">Dati par uzturēšanās atļaujām</div>
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;">
-                  <div style="min-height:78px;max-height:78px;overflow-y:auto;">
-                    <table class="wt" style="margin:0;table-layout:fixed;width:100%;">
-                      <colgroup><col><col style="width:140px;"><col style="width:140px;"></colgroup>
-                      <thead style="position:sticky;top:0;z-index:1;background:#ccd4d2;">
-                        <tr><th>Tips</th><th>Sākuma datums</th><th>Beigu datums</th></tr>
-                      </thead>
-                      <tbody id="pUzturTbody">
-                    <tr class="er"><td colspan="3">Nav uzturēšanās atļauju datu.</td></tr>
+              <div style="min-height:104px;max-height:104px;overflow-y:auto;">
+                <table class="wt" style="margin:0;table-layout:fixed;width:100%;">
+                  <colgroup><col><col style="width:140px;"><col style="width:140px;"></colgroup>
+                  <thead style="position:sticky;top:0;z-index:1;background:#ccd4d2;">
+                    <tr><th>Tips</th><th>Sākuma datums</th><th>Beigu datums</th></tr>
+                  </thead>
+                  <tbody id="pUzturTbody">
+                    <tr><td colspan="3" style="color:#7a9a98;font-style:italic;">Nav uzturēšanās atļauju datu.</td></tr>
+                    <tr><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td></tr>
                   </tbody>
-                    </table>
-                  </div>
-                </div>
-
+                </table>
+              </div>
+            </div>
           </div>
 
           <div class="ctab-panel" id="ppanel_lemums">
-
-            <!-- Lēmuma radio + statuss -->
             <div class="rg">
               <label class="ro2"><input type="radio" name="decision" value="pending" onchange="handleDecision('pending')"><span class="lwt">⏸ Atlikt (papildu info)</span></label>
               <label class="ro2"><input type="radio" name="decision" value="approve" onchange="handleDecision('approve')"><span class="lok">✔ Apstiprināt</span></label>
@@ -840,7 +828,6 @@ fieldset.g legend{
               <div style="flex:1;text-align:right;"><span id="currentStatus" class="badge bp">Apstrādē</span></div>
             </div>
 
-            <!-- ── ATLIKT ── -->
             <div class="ds" id="pendingSection">
               <div class="g2" style="margin-top:0;"><span class="rl" style="color:#6a3a00;font-weight:bold;">Pieprasītā info</span>
                 <select class="ws" id="atliktPieprasitaInfo" style="width:100%;">
@@ -859,7 +846,6 @@ fieldset.g legend{
               </div>
             </div>
 
-            <!-- ── APSTIPRINĀT ── -->
             <div id="approveSection">
               <div class="dp2">
                 <div style="display:grid;grid-template-columns:120px 120px 50px 120px;gap:6px;align-items:center;">
@@ -874,7 +860,6 @@ fieldset.g legend{
               </div>
             </div>
 
-            <!-- ── NORAIDĪT ── -->
             <div class="ds" id="declineSection">
               <div class="g2" style="margin-top:0;"><span class="rl" style="color:#6a1a1a;font-weight:bold;">Noraidījuma iemesls</span>
                 <select class="ws" id="declineReason" style="width:100%;" onchange="fillDeclineLaw()">
@@ -903,7 +888,6 @@ fieldset.g legend{
 
             <hr class="sep" style="margin:10px 0 6px;">
 
-            <!-- ── Sagatavotās atbildes (pārcelta no atsevišķā šķirkļa) ── -->
             <div class="sec-t">Sagatavotās atbildes</div>
             <table class="wt"><thead><tr>
               <th style="width:150px;">Reģistrācijas numurs</th>
@@ -916,16 +900,10 @@ fieldset.g legend{
               <button class="btn sm pr" onclick="viewSelectedResp('p')">Apskatīt atbildi</button>
               <button class="btn sm pr" onclick="deleteDocument()">Anulēt</button>
             </div>
-
-
           </div>
-
-
 
           <!-- TAB: A1 sertifikāti -->
           <div class="ctab-panel" id="ppanel_a1sert">
-
-            <!-- Block 1: Izsniegtie A1 sertifikāti -->
             <div class="sec-t">Izsniegtie A1 sertifikāti</div>
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
               <table class="wt" style="margin:0;">
@@ -954,7 +932,6 @@ fieldset.g legend{
 
             <hr class="sep">
 
-            <!-- Block 2: Saņemtie A1 sertifikāti -->
             <div class="sec-t" style="margin-top:7px;">Saņemtie A1 sertifikāti</div>
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
               <table class="wt" style="margin:0;">
@@ -982,7 +959,6 @@ fieldset.g legend{
 
             <hr class="sep">
 
-            <!-- Block 3: Atteikumi izsniegt A1 sertifikātu -->
             <div class="sec-t" style="margin-top:7px;">Atteikumi izsniegt A1 sertifikātu</div>
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
               <table class="wt" style="margin:0;">
@@ -1002,7 +978,6 @@ fieldset.g legend{
             <div>
               <button class="btn sm pr" onclick="viewDocument()">Apskatīt dokumentu</button>
             </div>
-
           </div>
 
         </div>
@@ -1012,12 +987,7 @@ fieldset.g legend{
   </div><!-- wr -->
 </div><!-- wb -->
 
-<div class="wsb">
-  <div class="sp" id="statusMain" style="flex:1;">Gatavs. Izvēlieties iesniegumu vai personu no saraksta.</div>
-  <div class="sp" style="width:140px;" id="statusSel">Izvēlēts: —</div>
-  <div class="sp" style="width:130px;" id="statusCount">Kopā: 0 iesniegumi</div>
-  <div class="sp" style="width:200px;"><span id="dateDisplay"></span> &nbsp;<strong id="clockDisplay"></strong></div>
-</div>
+
 </div>
 
 <!-- DECISION MODAL -->
@@ -1355,7 +1325,7 @@ function renderList(){
     });
     list.appendChild(grp);
   });
-  document.getElementById('statusCount').textContent='Kopā: '+cnt+' iesniegumi';
+  //statusCount removed
 }
 
 function onSelectApp(app){
@@ -1385,8 +1355,8 @@ function onSelectApp(app){
   selectedRespIdx.c=-1;
   renderPrevApps(app);
   renderGaita();
+  selectedLemumsIdx=-1;
   setStatus('Izvēlēts iesniegums: '+app.nr+' — '+app.company);
-  document.getElementById('statusSel').textContent='Nr: '+app.nr;
 }
 
 function onSelectPerson(app,p){
@@ -1398,9 +1368,11 @@ function onSelectPerson(app,p){
   var dzim='—';
   if(p.kods&&p.kods.length>=6){var d=p.kods.substring(0,2),m2=p.kods.substring(2,4),y=p.kods.substring(4,6);dzim=d+'.'+m2+'.'+(p.kods.charAt(6)==='1'?'19':'20')+y;}
   sv('pDzimDat',dzim);
-  var b=document.getElementById('currentStatus');b.className='badge '+sBadge[p.status];b.textContent=sLbl[p.status];
+  var b=document.getElementById('currentStatus');if(b){b.className='badge '+sBadge[p.status];b.textContent=sLbl[p.status];}
   var dv=p.status==='no'?'decline':p.status==='ok'?'approve':'pending';
-  document.querySelector('input[name="decision"][value="'+dv+'"]').checked=true;handleDecision(dv);
+  var decRadio=document.querySelector('input[name="decision"][value="'+dv+'"]');
+  if(decRadio)decRadio.checked=true;
+  handleDecision(dv);
   switchPTab('raksturojums');
   var pResp=app.responses.filter(function(r){return !r.persons||!r.persons.length||r.persons.indexOf(p.kods)!==-1;});
   renderResponses('pRespTbody',pResp,app,'p');
@@ -1410,7 +1382,6 @@ function onSelectPerson(app,p){
   padTbody('pNodarbTbody',3,6);
   padTbody('pUzturTbody',3,3);
   setStatus('Izvēlēta persona: '+p.kods+' '+p.name+' ('+app.company+')');
-  document.getElementById('statusSel').textContent=p.kods;
 }
 
 function renderGaita(){
@@ -1493,7 +1464,7 @@ function switchCTab(name){
 function renderPrevApps(app){
   var tb=document.getElementById('prevAppsTbody');if(!tb)return;
   var others=apps.filter(function(a){return a.id!==app.id&&a.regNr===app.regNr;});
-  if(!others.length){tb.innerHTML='<tr class="er"><td colspan="7">Nav iepriekšēju iesniegumu no šī darba devēja.</td></tr>';return;}
+  if(!others.length){tb.innerHTML='<tr class="er"><td colspan="6">Nav iepriekšēju iesniegumu no šī darba devēja.</td></tr>';return;}
   var rows=others.map(function(a){
     var tr=document.createElement('tr');tr.style.cursor='pointer';
     var a1count=a.persons.filter(function(p){return p.status==='ok';}).length;
@@ -1568,7 +1539,7 @@ function renderInspTabPanel(app){
 function toggleInspector(short,checked){
   if(!selApp)return;if(!selApp.selectedInspectors)selApp.selectedInspectors=[];
   if(checked){if(selApp.selectedInspectors.indexOf(short)===-1)selApp.selectedInspectors.push(short);}
-  else{selApp.selectedInspectors=selApp.selectedInspectors.filter(function(s){return s!==short;});selApp.persons.forEach(function(p){if(p.inspector===short)p.inspector='';});}
+  else{selApp.selectedInspectors=selApp.selectedInspectors.filter(function(s){return s!==short;});selApp.persons.forEach(function(p){if(p.inspector===short)p.inspector='';}); }
   renderInspTabPanel(selApp);renderList();
 }
 
@@ -1605,7 +1576,7 @@ function openRegDocModal(){
   if(!selApp){showInfo('Kļūda','Nav izvēlēts iesniegums.');return;}
   var now=new Date();
   document.getElementById('rdDate').value=pad(now.getDate())+'.'+pad(now.getMonth()+1)+'.'+now.getFullYear();
-  document.getElementById('rdName').value='';document.getElementById('rdDescr').value='';
+  document.getElementById('rdName').value='';
   var ps=document.getElementById('rdPerson');
   ps.innerHTML='<option value="">— Visi —</option>';
   selApp.persons.forEach(function(p){var o=document.createElement('option');o.value=p.kods;o.textContent=p.kods+' '+p.name;ps.appendChild(o);});
@@ -1687,7 +1658,6 @@ function renderResponses(tbodyId,resp,app,panel){
   }
   tb.innerHTML='';
   if(isCo){
-    // Company — Variant 3: Reģ.datums | Reģ.numurs | Dok.veids | Personas kods | Personas Uzvārds Vārds
     var MIN_C=8; var cCount=0;
     resp.forEach(function(r,idx){
       var persons=r.persons&&r.persons.length?r.persons:[''];
@@ -1707,7 +1677,6 @@ function renderResponses(tbodyId,resp,app,panel){
     });
     while(cCount<MIN_C){var ep=document.createElement('tr');ep.innerHTML='<td></td><td></td><td></td><td></td><td></td>';tb.appendChild(ep);cCount++;}
   } else {
-    // Person (Lēmums tab): Reģ.numurs | Dok.nosaukums | Periods no | Periods līdz | Pārtraukšanas datums
     resp.forEach(function(r,idx){
       var tr=document.createElement('tr');tr.id='resp_p_'+idx;
       tr.innerHTML=
@@ -1829,7 +1798,7 @@ function viewSelectedResp(panel){
   if(idx<0||!resp[idx]){showInfo('Kļūda','Lūdzu izvēlieties atbildi no saraksta.');return;}
   var r=resp[idx];showInfo('Atbildes dokuments '+r.regNr,'<b>Reģistrācijas numurs:</b> '+r.regNr+'<br><b>Dokumenta veids:</b> '+r.docType+'<br><b>Nosūtīts:</b> '+r.sendDate+' ('+r.sendType+')<br><br>Dokuments tiek ielādēts no arhīva sistēmas...');
 }
-function setStatus(m){document.getElementById('statusMain').textContent=m;}
+function setStatus(m){}
 function closeModal(id){document.getElementById(id).classList.remove('show');}
 function showInfo(t,h){document.getElementById('infoTitle').textContent=t;document.getElementById('infoBody').innerHTML=h;document.getElementById('infoModal').classList.add('show');}
 function showNotif(t,tx){document.getElementById('ntT').textContent=t;document.getElementById('ntX').textContent=tx;var n=document.getElementById('notif');n.classList.add('show');setTimeout(function(){n.classList.remove('show');},4000);}
@@ -1904,21 +1873,15 @@ function renderPersonBreakPeriods(p){
   });
 }
 
-function updateClock(){
-  var n=new Date();
-  document.getElementById('clockDisplay').textContent=pad(n.getHours())+':'+pad(n.getMinutes())+':'+pad(n.getSeconds());
-  document.getElementById('dateDisplay').textContent=pad(n.getDate())+'.'+pad(n.getMonth()+1)+'.'+n.getFullYear();
-}
+function updateClock(){}
 setInterval(updateClock,1000);updateClock();
 showView('empty');renderList();
 
-// ── Atlikts: save action ──
 function saveAtlikt(){
   if(!selApp){showInfo('Kļūda','Nav izvēlēts iesniegums.');return;}
   var info=document.getElementById('atliktPieprasitaInfo');
   var termins=document.getElementById('atliktTermins');
   var piezimes=document.getElementById('atliktPiezimes');
-  // Set company status to "atlikt" 
   selApp.status='atlikt';
   selApp.atliktData={
     pieprasitaInfo:info?info.value:'',
@@ -1931,39 +1894,44 @@ function saveAtlikt(){
   showNotif('⏸ Atlikts','Apstrāde atlikta. Vērtības saglabātas.');
 }
 
-// ── Render Lēmumi tab — Variant 3 structure ──
+var selectedLemumsIdx=-1;
 function renderLemumi(app){
   var tb=document.getElementById('cLemumiTbody');if(!tb)return;
   var resp=app&&app.responses?app.responses:[];
   if(!resp.length){
-    tb.innerHTML='<tr class="er"><td colspan="6">Nav sagatavotu lēmumu.</td></tr>';
+    tb.innerHTML='<tr class="er"><td colspan="5">Nav sagatavotu lēmumu.</td></tr>';
     return;
   }
   tb.innerHTML='';
   resp.forEach(function(r,idx){
-    // For each person in response, create a row
     var persons=r.persons&&r.persons.length?r.persons:[''];
     persons.forEach(function(kods,pi){
       var p=app&&kods?app.persons.find(function(pp){return pp.kods===kods;}):null;
       var tr=document.createElement('tr');
+      tr.style.cursor='pointer';
       tr.innerHTML=
         '<td style="font-size:11px;">'+(r.sendDate||r.prepDate||'—')+'</td>'+
         '<td style="font-size:11px;">'+(r.regNr||'—')+'</td>'+
         '<td style="font-size:11px;">'+r.docType+'</td>'+
         '<td style="font-size:11px;">'+(p?p.kods:kods||'—')+'</td>'+
-        '<td style="font-size:11px;">'+(p?p.name:'—')+'</td>'+
-        '<td style="text-align:center;"><button class="btn sm pr" onclick="viewLemumsResp('+idx+')">Apskatīt atbildi</button></td>';
+        '<td style="font-size:11px;">'+(p?p.name:'—')+'</td>';
+      tr.addEventListener('click',function(){
+        selectedLemumsIdx=idx;
+        tb.querySelectorAll('tr').forEach(function(r){r.style.background='';});
+        tr.style.background='#badede';
+      });
       tb.appendChild(tr);
     });
   });
   var MIN_L=6;var lCount=0;
   resp.forEach(function(r){lCount+=(r.persons&&r.persons.length?r.persons.length:1);});
-  while(lCount<MIN_L){var ep=document.createElement('tr');ep.innerHTML='<td></td><td></td><td></td><td></td><td></td><td></td>';document.getElementById('cLemumiTbody').appendChild(ep);lCount++;}
+  while(lCount<MIN_L){var ep=document.createElement('tr');ep.innerHTML='<td></td><td></td><td></td><td></td><td></td>';document.getElementById('cLemumiTbody').appendChild(ep);lCount++;}
 }
 
 function viewLemumsResp(idx){
-  if(!selApp||!selApp.responses[idx])return;
-  var r=selApp.responses[idx];
+  var i=(idx!=null&&idx>=0)?idx:selectedLemumsIdx;
+  if(!selApp||!selApp.responses[i]){showInfo('Kļūda','Lūdzu izvēlieties lēmumu no saraksta.');return;}
+  var r=selApp.responses[i];
   showInfo('Lēmums — '+r.regNr,
     '<b>Reģistrācijas numurs:</b> '+r.regNr+'<br>'+
     '<b>Dokumenta veids:</b> '+r.docType+'<br>'+
