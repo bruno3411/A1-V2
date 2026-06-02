@@ -811,7 +811,7 @@ fieldset.g legend{
                     <tr><th>Tips</th><th>Sākuma datums</th><th>Beigu datums</th></tr>
                   </thead>
                   <tbody id="pUzturTbody">
-                    <tr><td colspan="3" style="color:#7a9a98;font-style:italic;">Nav uzturēšanās atļauju datu.</td></tr>
+                    <tr><td></td><td></td><td></td></tr>
                     <tr><td></td><td></td><td></td></tr>
                     <tr><td></td><td></td><td></td></tr>
                   </tbody>
@@ -904,80 +904,74 @@ fieldset.g legend{
 
           <!-- TAB: A1 sertifikāti -->
           <div class="ctab-panel" id="ppanel_a1sert">
+
             <div class="sec-t">Izsniegtie A1 sertifikāti</div>
-            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
-              <table class="wt" style="margin:0;">
-                <thead><tr>
-                  <th style="width:120px;">Sagatavošanas datums</th>
-                  <th style="width:200px;">Dokumenta kods, nosaukums</th>
-                  <th style="width:100px;">Periods no</th>
-                  <th style="width:100px;">Periods līdz</th>
-                  <th style="width:130px;">Pārtraukšanas datums</th>
-                  <th style="width:120px;">Sagatavošanas datums</th>
-                  <th>Dokumenta kods, nosaukums</th>
-                </tr></thead>
-              </table>
-              <div style="min-height:78px;max-height:78px;overflow-y:auto;">
-                <table class="wt" style="margin:0;">
-                  <tbody id="pA1IsznTbody">
-                    <tr><td>15.03.2026</td><td>64501 — A1 sertifikāts (SE)</td><td>01.04.2026</td><td>30.09.2026</td><td>—</td><td>—</td><td>—</td></tr>
-                    <tr><td>10.04.2025</td><td>64501 — A1 sertifikāts (DE)</td><td>01.05.2025</td><td>31.10.2025</td><td>—</td><td>—</td><td>—</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div style="margin-bottom:10px;">
-              <button class="btn sm pr" onclick="viewDocument()">Apskatīt dokumentu</button>
-            </div>
-
-            <hr class="sep">
-
-            <div class="sec-t" style="margin-top:7px;">Saņemtie A1 sertifikāti</div>
-            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
-              <table class="wt" style="margin:0;">
-                <thead><tr>
-                  <th style="width:160px;">Persona</th>
-                  <th style="width:160px;">Darba devējs (DD)</th>
-                  <th style="width:100px;">Periods no</th>
-                  <th style="width:100px;">Periods līdz</th>
-                  <th style="width:130px;">Pārtraukšanas datums</th>
-                  <th style="width:120px;">Sagatavošanas datums</th>
-                  <th>Dokumenta kods, nosaukums</th>
-                </tr></thead>
-              </table>
-              <div style="min-height:78px;max-height:78px;overflow-y:auto;">
-                <table class="wt" style="margin:0;">
-                  <tbody id="pA1SanTbody">
-                    <tr class="er"><td colspan="7">Nav saņemtu A1 sertifikātu.</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div style="margin-bottom:10px;">
-              <button class="btn sm pr" onclick="viewDocument()">Apskatīt dokumentu</button>
-            </div>
-
-            <hr class="sep">
-
-            <div class="sec-t" style="margin-top:7px;">Atteikumi izsniegt A1 sertifikātu</div>
-            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
-              <table class="wt" style="margin:0;">
+            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:4px;">
+              <table class="wt" style="margin:0;width:100%;">
                 <thead><tr>
                   <th style="width:130px;">Sagatavošanas datums</th>
+                  <th>Dokumenta kods, nosaukums</th>
+                  <th style="width:90px;">Periods no</th>
+                  <th style="width:90px;">Periods līdz</th>
+                  <th style="width:160px;">Pārtraukšanas datums</th>
+                </tr></thead>
+                <tbody id="pA1IsznTbody">
+                  <tr><td>15.03.2026</td><td>64501 — A1 sertifikāts (SE)</td><td>01.04.2026</td><td>30.09.2026</td><td>—</td></tr>
+                  <tr><td>10.04.2025</td><td>64501 — A1 sertifikāts (DE)</td><td>01.05.2025</td><td>31.10.2025</td><td>—</td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="margin-bottom:8px;">
+              <button class="btn sm pr" onclick="viewDocument()">Apskatīt dokumentu</button>
+            </div>
+
+            <hr class="sep">
+
+            <div class="sec-t" style="margin-top:6px;">Saņemtie A1 sertifikāti</div>
+            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:4px;">
+              <table class="wt" style="margin:0;width:100%;">
+                <thead><tr>
+                  <th style="width:140px;">Persona</th>
+                  <th style="width:150px;">Darba devējs (DD)</th>
+                  <th style="width:90px;">Periods no</th>
+                  <th style="width:90px;">Periods līdz</th>
+                  <th style="width:160px;">Pārtraukšanas datums</th>
+                  <th style="width:130px;">Sagatavošanas datums</th>
+                  <th>Dokumenta kods, nosaukums</th>
+                </tr></thead>
+                <tbody id="pA1SanTbody">
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="margin-bottom:8px;">
+              <button class="btn sm pr" onclick="viewDocument()">Apskatīt dokumentu</button>
+            </div>
+
+            <hr class="sep">
+
+            <div class="sec-t" style="margin-top:6px;">Atteikumi izsniegt A1 sertifikātu</div>
+            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:4px;">
+              <table class="wt" style="margin:0;table-layout:fixed;width:100%;">
+                <colgroup><col style="width:130px;"><col></colgroup>
+                <thead style="background:#ccd4d2;"><tr>
+                  <th>Sagatavošanas datums</th>
                   <th>Dokumenta kods un veids</th>
                 </tr></thead>
+                <tbody id="pA1AtteikTbody">
+                  <tr><td></td><td></td></tr>
+                  <tr><td></td><td></td></tr>
+                  <tr><td></td><td></td></tr>
+                </tbody>
               </table>
-              <div style="min-height:78px;max-height:78px;overflow-y:auto;">
-                <table class="wt" style="margin:0;">
-                  <tbody id="pA1AtteikTbody">
-                    <tr class="er"><td colspan="2">Nav atteikumu.</td></tr>
-                  </tbody>
-                </table>
-              </div>
             </div>
             <div>
               <button class="btn sm pr" onclick="viewDocument()">Apskatīt dokumentu</button>
             </div>
+
           </div>
 
         </div>
