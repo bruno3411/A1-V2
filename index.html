@@ -360,6 +360,7 @@ fieldset.g legend{
       <div class="lg"><span class="sd dp"></span><span>Apstrādē</span></div>
       <div class="lg"><span class="sd do"></span><span>Apstiprināts</span></div>
       <div class="lg"><span class="sd dr"></span><span>Noraidīts</span></div>
+      <div class="lg"><span class="sd da"></span><span>Atlikts</span></div>
     </div>
     <hr class="sep">
     <button class="btn nw fw" onclick="openNewAppModal()">+ Reģistrēt jaunu iesniegumu</button>
@@ -367,6 +368,7 @@ fieldset.g legend{
     <button class="btn fw off" onclick="viewApplication()">Apskatīt iesniegumu</button>
     <button class="btn fw off" style="margin-top:3px;" onclick="viewImage()">Apskatīt e-iesnieguma attēlu</button>
     <button class="btn pr fw" style="margin-top:3px;" onclick="openDecisionModal()">Pieņemt lēmumu</button>
+    <button class="btn pr fw" style="margin-top:3px;" onclick="registerReceivedA1()">Reģistrēt Saņemto A1</button>
   </div>
 
   <!-- RIGHT -->
@@ -487,6 +489,10 @@ fieldset.g legend{
 
           <!-- TAB: Darba devēja raksturojums -->
           <div class="ctab-panel" id="cpanel_devejs">
+            <div class="g4" style="margin-top:2px;margin-bottom:7px;">
+              <span class="rl">NACE kods</span><input class="wi ro" id="devNaceKods" style="width:100%;" placeholder="49.41" readonly>
+              <span class="rl">Nosaukums</span><input class="wi ro" id="devNaceNosaukums" style="width:100%;" placeholder="Kravu pārvadājumi pa autoceļiem" readonly>
+            </div>
             <div style="display:flex;align-items:center;gap:16px;margin-bottom:7px;flex-wrap:wrap;">
               <div style="display:flex;align-items:center;gap:8px;">
                 <span class="rl" style="white-space:nowrap;">Darbinieku skaits kopā</span>
@@ -638,9 +644,9 @@ fieldset.g legend{
           <div class="ctab-panel" id="cpanel_lemumi">
 
             <!-- Iepriekš saņemtie iesniegumi -->
-            <div class="sec-t">Iepriekš saņemtie iesniegumi no šī darba devēja</div>
+            <div class="sec-t">Iesniegumi/Lēmumi</div>
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:6px;">
-              <div style="max-height:156px;overflow-y:auto;">
+              <div style="min-height:104px;max-height:104px;overflow-y:auto;">
                 <table class="wt" style="margin:0;table-layout:fixed;width:100%;">
                   <colgroup>
                     <col style="width:95px;"><col style="width:120px;"><col><col style="width:85px;"><col style="width:80px;"><col style="width:75px;">
@@ -925,8 +931,9 @@ fieldset.g legend{
                 </table>
               </div>
             </div>
-            <div style="margin-bottom:8px;">
+            <div style="margin-bottom:8px;display:flex;gap:4px;">
               <button class="btn sm pr" onclick="viewDocument()">Apskatīt dokumentu</button>
+              <button class="btn sm pr" onclick="viewDocument()">Apskatīt dokumenta attēlu</button>
             </div>
 
             <hr class="sep">
@@ -952,8 +959,9 @@ fieldset.g legend{
                 </table>
               </div>
             </div>
-            <div>
+            <div style="display:flex;gap:4px;">
               <button class="btn sm pr" onclick="viewDocument()">Apskatīt dokumentu</button>
+              <button class="btn sm pr" onclick="viewDocument()">Apskatīt dokumenta attēlu</button>
             </div>
 
           </div>
@@ -1781,6 +1789,11 @@ function showNotif(t,tx){document.getElementById('ntT').textContent=t;document.g
 function pad(n){return n<10?'0'+n:''+n;}
 function viewApplication(){if(!selApp){showInfo('Kļūda','Nav izvēlēts iesniegums.');return;}showInfo('Iesniegums '+selApp.nr,'Iesnieguma e-attēls tiek ielādēts no arhīva.<br><br>Iesniegums: <b>'+selApp.nr+'</b><br>Uzņēmums: <b>'+selApp.company+'</b>');}
 function viewImage(){viewApplication();}
+function registerReceivedA1(){
+  if(!selApp){showInfo('Kļūda','Nav izvēlēts iesniegums.');return;}
+  if(viewMode==='person'&&selPerson)switchPTab('a1sert');
+  showInfo('Reģistrēt Saņemto A1','Saņemtā A1 sertifikāta reģistrācijas forma tiek atvērta...<br><br>Sertifikāts tiks pievienots blokam "Saņemtie A1 sertifikāti".');
+}
 function viewDocument(){if(!selApp)return;showInfo('Dokumenta apskate','Dokuments tiek atvērts skatīšanai...');}
 function deleteDocument(){if(!selApp)return;if(confirm('Dzēst izvēlēto dokumentu?'))showNotif('Dzēsts','Dokuments dzēsts.');}
 
