@@ -500,11 +500,10 @@ fieldset.g legend{
             <div class="sec-t">Apdrošināšanas iemaksas — pēdējie 12 mēneši</div>
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
               <div style="max-height:156px;overflow-y:auto;">
-                <table class="wt" id="devIemaksasTbl" style="margin:0;table-layout:fixed;width:100%;">
-                  <colgroup><col style="width:110px;"><col style="width:200px;"><col></colgroup>
+                <table class="wt" id="devIemaksasTbl" style="margin:0;width:100%;">
                   <thead style="position:sticky;top:0;z-index:1;background:#ccd4d2;"><tr>
-                    <th>Iemaksu periods</th>
-                    <th>Iemaksu objekts</th>
+                    <th style="width:130px;">Iemaksu periods</th>
+                    <th style="width:260px;">Iemaksu objekts</th>
                     <th>Veiktais iemaksu objekts</th>
                   </tr></thead>
                   <tbody id="devIemaksasTbody">
@@ -644,20 +643,19 @@ fieldset.g legend{
               <div style="max-height:156px;overflow-y:auto;">
                 <table class="wt" style="margin:0;table-layout:fixed;width:100%;">
                   <colgroup>
-                    <col style="width:75px;"><col style="width:100px;"><col><col style="width:80px;"><col style="width:90px;"><col style="width:75px;"><col style="width:75px;">
+                    <col style="width:95px;"><col style="width:120px;"><col><col style="width:85px;"><col style="width:80px;"><col style="width:75px;">
                   </colgroup>
                   <thead style="position:sticky;top:0;z-index:1;background:#ccd4d2;">
                     <tr>
-                      <th>Nr.</th>
-                      <th>Datums</th>
-                      <th>Iesnieguma nosaukums</th>
+                      <th>Reģ. datums</th>
+                      <th>Reģ. numurs</th>
+                      <th>Iesnieguma veids un nosaukums</th>
                       <th style="text-align:center;">Personu sk.</th>
-                      <th style="text-align:center;">Apstrādāto sk.</th>
                       <th style="text-align:center;">Piešķirts</th>
                       <th style="text-align:center;">Atteikts</th>
                     </tr>
                   </thead>
-                  <tbody id="prevAppsTbody"><tr class="er"><td colspan="7">Nav iepriekšēju iesniegumu no šī darba devēja.</td></tr></tbody>
+                  <tbody id="prevAppsTbody"><tr class="er"><td colspan="6">Nav iepriekšēju iesniegumu no šī darba devēja.</td></tr></tbody>
                 </table>
               </div>
             </div>
@@ -905,22 +903,27 @@ fieldset.g legend{
           <!-- TAB: A1 sertifikāti -->
           <div class="ctab-panel" id="ppanel_a1sert">
 
-            <div class="sec-t">Izsniegtie A1 sertifikāti</div>
+            <div class="sec-t">Nosūtītie dokumenti</div>
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:4px;">
-              <table class="wt" style="margin:0;width:100%;">
-                <thead><tr>
-                  <th style="width:130px;">Sagatavošanas datums</th>
-                  <th>Dokumenta kods, nosaukums</th>
-                  <th style="width:90px;">Periods no</th>
-                  <th style="width:90px;">Periods līdz</th>
-                  <th style="width:160px;">Pārtraukšanas datums</th>
-                </tr></thead>
-                <tbody id="pA1IsznTbody">
-                  <tr><td>15.03.2026</td><td>64501 — A1 sertifikāts (SE)</td><td>01.04.2026</td><td>30.09.2026</td><td>—</td></tr>
-                  <tr><td>10.04.2025</td><td>64501 — A1 sertifikāts (DE)</td><td>01.05.2025</td><td>31.10.2025</td><td>—</td></tr>
-                  <tr><td></td><td></td><td></td><td></td><td></td></tr>
-                </tbody>
-              </table>
+              <div style="max-height:160px;overflow-y:auto;">
+                <table class="wt" style="margin:0;width:100%;">
+                  <thead style="position:sticky;top:0;z-index:1;background:#ccd4d2;"><tr>
+                    <th style="width:100px;">Reģ. datums</th>
+                    <th>Dokumenta veids un nosaukums</th>
+                    <th style="width:90px;">Periods no</th>
+                    <th style="width:90px;">Periods līdz</th>
+                    <th style="width:150px;">Pārtraukšanas datums</th>
+                    <th style="width:170px;">Darba devējs</th>
+                  </tr></thead>
+                  <tbody id="pA1IsznTbody">
+                    <tr><td>15.03.2026</td><td>64501 — A1 sertifikāts (SE)</td><td>01.04.2026</td><td>30.09.2026</td><td>—</td><td>Kreiss Sverige AB</td></tr>
+                    <tr><td>10.04.2025</td><td>64501 — A1 sertifikāts (DE)</td><td>01.05.2025</td><td>31.10.2025</td><td>—</td><td>Kreiss GmbH</td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
             <div style="margin-bottom:8px;">
               <button class="btn sm pr" onclick="viewDocument()">Apskatīt dokumentu</button>
@@ -930,43 +933,24 @@ fieldset.g legend{
 
             <div class="sec-t" style="margin-top:6px;">Saņemtie A1 sertifikāti</div>
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:4px;">
-              <table class="wt" style="margin:0;width:100%;">
-                <thead><tr>
-                  <th style="width:140px;">Persona</th>
-                  <th style="width:150px;">Darba devējs (DD)</th>
-                  <th style="width:90px;">Periods no</th>
-                  <th style="width:90px;">Periods līdz</th>
-                  <th style="width:160px;">Pārtraukšanas datums</th>
-                  <th style="width:130px;">Sagatavošanas datums</th>
-                  <th>Dokumenta kods, nosaukums</th>
-                </tr></thead>
-                <tbody id="pA1SanTbody">
-                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div style="margin-bottom:8px;">
-              <button class="btn sm pr" onclick="viewDocument()">Apskatīt dokumentu</button>
-            </div>
-
-            <hr class="sep">
-
-            <div class="sec-t" style="margin-top:6px;">Atteikumi izsniegt A1 sertifikātu</div>
-            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:4px;">
-              <table class="wt" style="margin:0;table-layout:fixed;width:100%;">
-                <colgroup><col style="width:130px;"><col></colgroup>
-                <thead style="background:#ccd4d2;"><tr>
-                  <th>Sagatavošanas datums</th>
-                  <th>Dokumenta kods un veids</th>
-                </tr></thead>
-                <tbody id="pA1AtteikTbody">
-                  <tr><td></td><td></td></tr>
-                  <tr><td></td><td></td></tr>
-                  <tr><td></td><td></td></tr>
-                </tbody>
-              </table>
+              <div style="max-height:132px;overflow-y:auto;">
+                <table class="wt" style="margin:0;width:100%;">
+                  <thead style="position:sticky;top:0;z-index:1;background:#ccd4d2;"><tr>
+                    <th style="width:100px;">Reģ. datums</th>
+                    <th>Dokumenta veids un nosaukums</th>
+                    <th style="width:90px;">Periods no</th>
+                    <th style="width:90px;">Periods līdz</th>
+                    <th style="width:150px;">Pārtraukšanas datums</th>
+                    <th style="width:170px;">Darba devējs</th>
+                  </tr></thead>
+                  <tbody id="pA1SanTbody">
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
             <div>
               <button class="btn sm pr" onclick="viewDocument()">Apskatīt dokumentu</button>
@@ -1463,16 +1447,14 @@ function renderPrevApps(app){
     var tr=document.createElement('tr');tr.style.cursor='pointer';
     var a1count=a.persons.filter(function(p){return p.status==='ok';}).length;
     var atteikts=a.persons.filter(function(p){return p.status==='no';}).length;
-    var apstradati=a.persons.filter(function(p){return p.status==='ok'||p.status==='no';}).length;
-    tr.innerHTML='<td>'+a.nr+'</td><td>'+a.date+'</td><td>'+a.appName+'</td>'+
+    tr.innerHTML='<td>'+a.date+'</td><td>'+(a.appRegNr||a.nr)+'</td><td>'+a.appName+'</td>'+
       '<td style="text-align:center;">'+a.persons.length+'</td>'+
-      '<td style="text-align:center;">'+apstradati+'</td>'+
       '<td style="text-align:center;">'+a1count+'</td>'+
       '<td style="text-align:center;">'+atteikts+'</td>';
     tr.addEventListener('click',function(){onSelectApp(getAppById(a.id));});
     return tr.outerHTML;
   });
-  while(rows.length<3)rows.push('<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
+  while(rows.length<3)rows.push('<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
   tb.innerHTML=rows.join('');
 }
 function getAppById(id){return apps.find(function(a){return a.id===id;});}
