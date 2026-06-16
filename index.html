@@ -367,7 +367,6 @@ fieldset.g legend{
     <hr class="sep">
     <button class="btn fw off" onclick="viewApplication()">Apskatīt iesniegumu</button>
     <button class="btn fw off" style="margin-top:3px;" onclick="viewImage()">Apskatīt e-iesnieguma attēlu</button>
-    <button class="btn pr fw" style="margin-top:3px;" onclick="openDecisionModal()">Pieņemt lēmumu</button>
     <button class="btn pr fw" style="margin-top:3px;" onclick="registerReceivedA1()">Reģistrēt Saņemto A1</button>
   </div>
 
@@ -460,7 +459,7 @@ fieldset.g legend{
           <div class="ctab"        id="ctab_atteikt" onclick="switchCTab('atteikt')">Atlikt / Atteikt iesniegumu</div>
           <div class="ctab"        id="ctab_resp"    onclick="switchCTab('resp')">Sagatavotās atbildes</div>
           <div class="ctab"        id="ctab_insp"    onclick="switchCTab('insp')">Inspektori</div>
-          <div class="ctab"        id="ctab_lemumi"  onclick="switchCTab('lemumi')">Lēmumi</div>
+          <div class="ctab"        id="ctab_lemumi"  onclick="switchCTab('lemumi')">Saņemtie/Nosūtītie dokumenti</div>
         </div>
 
         <div class="ctab-body">
@@ -493,19 +492,15 @@ fieldset.g legend{
               <span class="rl">NACE kods</span><input class="wi ro" id="devNaceKods" style="width:100%;" placeholder="4941" readonly>
               <span class="rl">Nosaukums</span><input class="wi ro" id="devNaceNosaukums" style="width:100%;" placeholder="Kravu pārvadājumi pa autoceļiem un pārvadājumu starpniecības pakalpojumi" readonly>
             </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:7px;">
-              <div style="display:flex;align-items:center;gap:6px;">
-                <span class="rl" style="white-space:nowrap;font-size:10.5px;">Darbinieku skaits iesn. iesniegšanas dienā</span>
-                <input class="wi ro" id="devDarbSkaits" style="width:55px;" placeholder="0" readonly>
-              </div>
-              <div style="display:flex;align-items:center;gap:6px;">
-                <span class="rl" style="white-space:nowrap;font-size:10.5px;">Izsniegtie A1 (gadā līdz iesn.)</span>
-                <input class="wi ro" id="devA1Gada" style="width:55px;" placeholder="0" readonly>
-              </div>
-              <div style="display:flex;align-items:center;gap:6px;">
-                <span class="rl" style="white-space:nowrap;font-size:10.5px;">Atteiktie (gadā līdz iesn.)</span>
-                <input class="wi ro" id="devAtteiktieGada" style="width:55px;" placeholder="0" readonly>
-              </div>
+            <div style="display:grid;grid-template-columns:1fr auto 1fr auto;gap:6px 12px;align-items:center;margin-bottom:7px;">
+              <span class="rl" style="font-size:10.5px;">Darbinieku skaits iesnieguma iesniegšanas dienā</span>
+              <input class="wi ro" id="devDarbSkaits" style="width:60px;" placeholder="0" readonly>
+              <span class="rl" style="font-size:10.5px;">t.sk. administratīvo darbinieku skaits</span>
+              <input class="wi ro" id="devDarbAdmin" style="width:60px;" placeholder="0" readonly>
+              <span class="rl" style="font-size:10.5px;">Izsniegtie A1 (gadā līdz iesn.)</span>
+              <input class="wi ro" id="devA1Gada" style="width:60px;" placeholder="0" readonly>
+              <span class="rl" style="font-size:10.5px;">Atteiktie (gadā līdz iesn.)</span>
+              <input class="wi ro" id="devAtteiktieGada" style="width:60px;" placeholder="0" readonly>
             </div>
             <div class="sec-t">Iemaksu ziņojums — pēdējie 2 mēneši</div>
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:5px;">
@@ -560,6 +555,9 @@ fieldset.g legend{
                 <span class="rl" style="padding-top:3px;">Pamatojums brīvā tekstā</span>
                 <textarea class="wta" rows="2" style="width:100%;" placeholder="Pamatojums brīvā tekstā..."></textarea>
               </div>
+              <div style="margin-top:8px;">
+                <button class="btn pr" onclick="prepareAtteikums()">Sagatavot atteikuma lēmumu</button>
+              </div>
             </div>
             <div id="atliktSection" class="atts show">
               <div class="g2" style="margin-top:0;">
@@ -584,10 +582,6 @@ fieldset.g legend{
                 <button class="btn pr" onclick="saveAtlikt()">Saglabāt</button>
                 <span id="atliktSavedMsg" style="font-size:11px;color:#1a5a1a;display:none;">&#10003; Saglabāts</span>
               </div>
-            </div>
-            <hr class="sep" style="margin-top:10px;">
-            <div style="margin-top:6px;">
-              <button class="btn pr" onclick="openDecisionModal()">Pieņemt lēmumu</button>
             </div>
           </div>
           <div class="ctab-panel" id="cpanel_resp">
@@ -645,33 +639,37 @@ fieldset.g legend{
           <!-- TAB: LĒMUMI -->
           <div class="ctab-panel" id="cpanel_lemumi">
 
-            <!-- Iepriekš saņemtie iesniegumi -->
-            <div class="sec-t">Iesniegumi/Lēmumi</div>
-            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:6px;">
+            <!-- Saņemtie dokumenti -->
+            <div class="sec-t">Saņemtie dokumenti</div>
+            <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;margin-bottom:4px;">
               <div style="min-height:104px;max-height:104px;overflow-y:auto;">
                 <table class="wt" style="margin:0;table-layout:fixed;width:100%;">
                   <colgroup>
-                    <col style="width:95px;"><col style="width:120px;"><col><col style="width:85px;"><col style="width:80px;"><col style="width:75px;">
+                    <col style="width:90px;"><col style="width:115px;"><col><col style="width:135px;"><col style="width:70px;"><col style="width:70px;"><col style="width:65px;">
                   </colgroup>
                   <thead style="position:sticky;top:0;z-index:1;background:#ccd4d2;">
                     <tr>
                       <th>Reģ. datums</th>
                       <th>Reģ. numurs</th>
                       <th>Iesnieguma veids un nosaukums</th>
+                      <th>Iesniedzējs</th>
                       <th style="text-align:center;">Personu sk.</th>
                       <th style="text-align:center;">Piešķirts</th>
                       <th style="text-align:center;">Atteikts</th>
                     </tr>
                   </thead>
-                  <tbody id="prevAppsTbody"><tr class="er"><td colspan="6">Nav iepriekšēju iesniegumu no šī darba devēja.</td></tr></tbody>
+                  <tbody id="prevAppsTbody"><tr class="er"><td colspan="7">Nav iepriekšēju iesniegumu no šī darba devēja.</td></tr></tbody>
                 </table>
               </div>
+            </div>
+            <div style="display:flex;gap:4px;margin-bottom:6px;">
+              <button class="btn sm pr" onclick="viewDocument()">Apskatīt saņemto dokumentu</button>
             </div>
 
             <hr class="sep">
 
-            <!-- Sagatavotie lēmumi -->
-            <div class="sec-t" style="margin-top:6px;">Sagatavotie lēmumi</div>
+            <!-- Nosūtītie dokumenti -->
+            <div class="sec-t" style="margin-top:6px;">Nosūtītie dokumenti</div>
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;">
               <div style="min-height:156px;max-height:156px;overflow-y:auto;">
                 <table class="wt" style="margin:0;table-layout:fixed;width:100%;">
@@ -1507,19 +1505,20 @@ function switchCTab(name){
 function renderPrevApps(app){
   var tb=document.getElementById('prevAppsTbody');if(!tb)return;
   var others=apps.filter(function(a){return a.id!==app.id&&a.regNr===app.regNr;});
-  if(!others.length){tb.innerHTML='<tr class="er"><td colspan="6">Nav iepriekšēju iesniegumu no šī darba devēja.</td></tr>';return;}
+  if(!others.length){tb.innerHTML='<tr class="er"><td colspan="7">Nav iepriekšēju iesniegumu no šī darba devēja.</td></tr>';return;}
   var rows=others.map(function(a){
     var tr=document.createElement('tr');tr.style.cursor='pointer';
     var a1count=a.persons.filter(function(p){return p.status==='ok';}).length;
     var atteikts=a.persons.filter(function(p){return p.status==='no';}).length;
     tr.innerHTML='<td>'+a.date+'</td><td>'+(a.appRegNr||a.nr)+'</td><td>'+a.appName+'</td>'+
+      '<td>'+a.company+'</td>'+
       '<td style="text-align:center;">'+a.persons.length+'</td>'+
       '<td style="text-align:center;">'+a1count+'</td>'+
       '<td style="text-align:center;">'+atteikts+'</td>';
     tr.addEventListener('click',function(){onSelectApp(getAppById(a.id));});
     return tr.outerHTML;
   });
-  while(rows.length<3)rows.push('<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
+  while(rows.length<3)rows.push('<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>');
   tb.innerHTML=rows.join('');
 }
 function getAppById(id){return apps.find(function(a){return a.id===id;});}
@@ -1941,6 +1940,19 @@ function saveAtlikt(){
   if(msg){msg.style.display='inline';setTimeout(function(){msg.style.display='none';},3000);}
   renderList();
   showNotif('⏸ Atlikts','Apstrāde atlikta. Vērtības saglabātas.');
+}
+
+function prepareAtteikums(){
+  if(!selApp){showInfo('Kļūda','Nav izvēlēts iesniegums.');return;}
+  var rs=document.getElementById('atteiktReason');
+  if(!rs||!rs.value){showInfo('Nepieciešami dati','Lūdzu izvēlieties atteikuma iemeslu.');return;}
+  var now=new Date(),dt=pad(now.getDate())+'.'+pad(now.getMonth()+1)+'.'+now.getFullYear()+' '+pad(now.getHours())+':'+pad(now.getMinutes());
+  var rn='ATB-'+now.getFullYear()+'-'+selApp.nr+'-0'+(selApp.responses.length+1);
+  selApp.status='no';
+  selApp.responses.push({prepDate:dt,regNr:rn,docType:'Atteikuma lēmums',sendType:'E-pasts',sendDate:dt.split(' ')[0],persons:[]});
+  logGaita('atteik_iesn','Sagatavots atteikuma lēmums iesniegumam — '+rs.options[rs.selectedIndex].text);
+  renderList();renderResponses('cRespTbody',selApp.responses,selApp,'c');
+  showNotif('Sagatavots','Atteikuma lēmums sagatavots iesniegumam.');
 }
 
 var selectedLemumsIdx=-1;
