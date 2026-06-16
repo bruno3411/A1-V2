@@ -490,21 +490,21 @@ fieldset.g legend{
           <!-- TAB: Darba devēja raksturojums -->
           <div class="ctab-panel" id="cpanel_devejs">
             <div class="g4" style="margin-top:2px;margin-bottom:6px;">
-              <span class="rl">NACE kods</span><input class="wi ro" id="devNaceKods" style="width:100%;" placeholder="49.41" readonly>
-              <span class="rl">Nosaukums</span><input class="wi ro" id="devNaceNosaukums" style="width:100%;" placeholder="Kravu pārvadājumi pa autoceļiem" readonly>
+              <span class="rl">NACE kods</span><input class="wi ro" id="devNaceKods" style="width:100%;" placeholder="4941" readonly>
+              <span class="rl">Nosaukums</span><input class="wi ro" id="devNaceNosaukums" style="width:100%;" placeholder="Kravu pārvadājumi pa autoceļiem un pārvadājumu starpniecības pakalpojumi" readonly>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:7px;">
               <div style="display:flex;align-items:center;gap:6px;">
-                <span class="rl" style="white-space:nowrap;font-size:10.5px;">Darbinieku skaits iesn. dienā</span>
-                <input class="wi ro" id="devDarbSkaits" style="width:60px;" placeholder="0" readonly>
+                <span class="rl" style="white-space:nowrap;font-size:10.5px;">Darbinieku skaits iesn. iesniegšanas dienā</span>
+                <input class="wi ro" id="devDarbSkaits" style="width:55px;" placeholder="0" readonly>
               </div>
               <div style="display:flex;align-items:center;gap:6px;">
                 <span class="rl" style="white-space:nowrap;font-size:10.5px;">Izsniegtie A1 (gadā līdz iesn.)</span>
-                <input class="wi ro" id="devA1Gada" style="width:60px;" placeholder="0" readonly>
+                <input class="wi ro" id="devA1Gada" style="width:55px;" placeholder="0" readonly>
               </div>
               <div style="display:flex;align-items:center;gap:6px;">
                 <span class="rl" style="white-space:nowrap;font-size:10.5px;">Atteiktie (gadā līdz iesn.)</span>
-                <input class="wi ro" id="devAtteiktieGada" style="width:60px;" placeholder="0" readonly>
+                <input class="wi ro" id="devAtteiktieGada" style="width:55px;" placeholder="0" readonly>
               </div>
             </div>
             <div class="sec-t">Iemaksu ziņojums — pēdējie 2 mēneši</div>
@@ -585,9 +585,11 @@ fieldset.g legend{
                 <span id="atliktSavedMsg" style="font-size:11px;color:#1a5a1a;display:none;">&#10003; Saglabāts</span>
               </div>
             </div>
+            <hr class="sep" style="margin-top:10px;">
+            <div style="margin-top:6px;">
+              <button class="btn pr" onclick="openDecisionModal()">Pieņemt lēmumu</button>
+            </div>
           </div>
-
-          <!-- TAB: Atbildes -->
           <div class="ctab-panel" id="cpanel_resp">
             <div style="border:1px solid #8aacaa;border-radius:3px;overflow:hidden;">
               <div style="min-height:208px;max-height:208px;overflow-y:auto;">
@@ -1047,6 +1049,14 @@ fieldset.g legend{
         <span class="rl">Reģistrācijas numurs</span><input class="wi" id="naRn" style="width:100%;">
         <span class="rl">Kontaktpersona</span><input class="wi" id="naCt" style="width:100%;">
         <span class="rl">E-pasts</span><input class="wi" id="naEm" style="width:100%;">
+        <span class="rl" style="align-self:flex-start;padding-top:4px;">Iesnieguma veids</span>
+        <select class="ws" id="naType" style="width:100%;">
+          <option value="11722">11722 — Iesniegums sociāli apdrošināmās personas statusa saglabāšanai Latvijā, strādājot citā ES valstī pēc nosūtījuma (A1 sertifikāta saņemšanai)</option>
+          <option value="11723">11723 — Iesniegums sociāli apdrošināmās personas statusa saglabāšanai Latvijā, strādājot citā ES valstī pašnodarbinātā statusā (A1 sertifikāta saņemšanai)</option>
+          <option value="11724" selected>11724 — Iesniegums sociāli apdrošināmās personas statusa saglabāšanai Latvijā (A1 sertifikāta saņemšanai)</option>
+          <option value="11759">11759 — Darba devēja vai darba ņēmēja iesniegums par A1 sertifikāta pārtraukšanu</option>
+          <option value="11764">11764 — Darba devēja iesniegums sociāli apdrošināmās personas statusa saglabāšanai Latvijā, parasti strādājot divās vai vairākās ES/EEZ valstīs vai Šveicē (A1 sertifikāta saņemšanai)</option>
+        </select>
         <span class="rl">Saņemšanas veids</span>
         <select class="ws" id="naRt" style="width:100%;">
           <option>E-iesniegums (portāls)</option><option>Klātienē</option><option>Pa pastu</option><option>E-pasts</option>
@@ -1231,7 +1241,7 @@ var INSP_DB=[
 var apps=[
   {id:'A001',nr:'11724',date:'13.04.2026',company:'SIA KREISS',
    regNr:'40003123456',adrese:'Brīvības iela 40, Rīga, LV-1010',talrunis:'+371 67123456',kontakts:'Jānis Bērziņš',epasts:'j.berzins@kreiss.lv',
-   appName:'Iesniegums sociāli apdrošināmās personas statusa saglabāšanai Latvijā',appRegNr:'2026-A1-11724',appRegDate:'13.04.2026',receiveType:'E-iesniegums (portāls)',
+   appName:'11724 — Iesniegums sociāli apdrošināmās personas statusa saglabāšanai Latvijā (A1 sertifikāta saņemšanai)',appTypeCode:'11724',appRegNr:'2026-A1-11724',appRegDate:'13.04.2026',receiveType:'E-iesniegums (portāls)',
    status:'proc',expanded:false,selectedInspectors:['ĀBOLTIŅA I.','KALNIŅA J.'],
    persons:[
      {name:'MIKE WAZOWSKI',kods:'291011-12345',valsts:'Vācija (DE)',veids:'Norīkotais darbinieks',no:'01.05.2026',lidz:'31.10.2026',devejs:'Kreiss GmbH, Berlīne',iesniegts:'13.04.2026',status:'proc',inspector:'ĀBOLTIŅA I.',breakPeriods:[{date:'10.06.2026',pamatojums:'VID informācija',dokNr:''}]},
@@ -1254,7 +1264,7 @@ var apps=[
   },
   {id:'A002',nr:'11725',date:'12.03.2026',company:'PETROV ALEKSANDR',
    regNr:'211111-21111',adrese:'Dzirnavu iela 12-5, Rīga, LV-1010',talrunis:'+371 29123456',kontakts:'—',epasts:'a.petrov@inbox.lv',
-   appName:'Iesniegums sociāli apdrošināmās personas statusa saglabāšanai Latvijā',appRegNr:'2026-A1-11725',appRegDate:'12.03.2026',receiveType:'E-iesniegums (portāls)',
+   appName:'11724 — Iesniegums sociāli apdrošināmās personas statusa saglabāšanai Latvijā (A1 sertifikāta saņemšanai)',appTypeCode:'11724',appRegNr:'2026-A1-11725',appRegDate:'12.03.2026',receiveType:'E-iesniegums (portāls)',
    status:'new',expanded:false,selectedInspectors:[],submitter:'person',
    persons:[{name:'PETROV ALEKSANDR',kods:'211111-21111',valsts:'Igaunija (EE)',veids:'Norīkotais darbinieks',no:'01.04.2026',lidz:'30.09.2026',devejs:'AS Kreiss Eesti, Tallina',iesniegts:'12.03.2026',status:'new',inspector:''}],
    docs:[{name:'petrov_darba_lig.pdf',size:'189 KB',descr:'Darba līgums',date:'12.03.2026'}],
@@ -1266,7 +1276,7 @@ var apps=[
   },
   {id:'A003',nr:'11726',date:'10.03.2026',company:'SIA KREISS',
    regNr:'40003123456',adrese:'Brīvības iela 40, Rīga, LV-1010',talrunis:'+371 67123456',kontakts:'Jānis Bērziņš',epasts:'j.berzins@kreiss.lv',
-   appName:'Iesniegums sociāli apdrošināmās personas statusa saglabāšanai Latvijā',appRegNr:'2026-A1-11726',appRegDate:'10.03.2026',receiveType:'Klātienē',
+   appName:'11724 — Iesniegums sociāli apdrošināmās personas statusa saglabāšanai Latvijā (A1 sertifikāta saņemšanai)',appTypeCode:'11724',appRegNr:'2026-A1-11726',appRegDate:'10.03.2026',receiveType:'Klātienē',
    status:'ok',expanded:false,selectedInspectors:['ĀBOLTIŅA I.'],
    persons:[{name:'KALNIŅŠ ANDRIS',kods:'411111-41111',valsts:'Zviedrija (SE)',veids:'Norīkotais darbinieks',no:'01.04.2026',lidz:'30.09.2026',devejs:'Kreiss Sverige AB, Stokholma',iesniegts:'10.03.2026',status:'ok',inspector:'ĀBOLTIŅA I.',approvedFrom:'01.04.2026',approvedTo:'30.09.2026'}],
    docs:[{name:'a1_kalnins_SE.pdf',size:'98 KB',descr:'Izsniegts A1 sertifikāts',date:'15.03.2026'}],
@@ -1281,7 +1291,7 @@ var apps=[
   },
   {id:'A004',nr:'11720',date:'01.02.2026',company:'SIA KREISS',
    regNr:'40003123456',adrese:'Brīvības iela 40, Rīga, LV-1010',talrunis:'+371 67123456',kontakts:'Jānis Bērziņš',epasts:'j.berzins@kreiss.lv',
-   appName:'Iesniegums sociāli apdrošināmās personas statusa saglabāšanai Latvijā',appRegNr:'2026-A1-11720',appRegDate:'01.02.2026',receiveType:'Pa pastu',
+   appName:'11724 — Iesniegums sociāli apdrošināmās personas statusa saglabāšanai Latvijā (A1 sertifikāta saņemšanai)',appTypeCode:'11724',appRegNr:'2026-A1-11720',appRegDate:'01.02.2026',receiveType:'Pa pastu',
    status:'no',expanded:false,selectedInspectors:['STRAUTIŅŠ P.'],
    persons:[{name:'MÜLLER HANS',kods:'511111-51111',valsts:'Austrija (AT)',veids:'Norīkotais darbinieks',no:'01.01.2026',lidz:'31.01.2026',devejs:'Kreiss GmbH Wien, Vīne',iesniegts:'01.02.2026',status:'no',inspector:'STRAUTIŅŠ P.'}],
    docs:[{name:'muller_norikojums.pdf',size:'205 KB',descr:'Norīkojuma vēstule',date:'01.02.2026'}],
@@ -1296,7 +1306,7 @@ var apps=[
   },
   {id:'A005',nr:'11701',date:'15.01.2026',company:'SIA KREISS',
    regNr:'40003123456',adrese:'Brīvības iela 40, Rīga, LV-1010',talrunis:'+371 67123456',kontakts:'Jānis Bērziņš',epasts:'j.berzins@kreiss.lv',
-   appName:'Iesniegums sociāli apdrošināmās personas statusa saglabāšanai Latvijā',appRegNr:'2026-A1-11701',appRegDate:'15.01.2026',receiveType:'E-iesniegums (portāls)',
+   appName:'11724 — Iesniegums sociāli apdrošināmās personas statusa saglabāšanai Latvijā (A1 sertifikāta saņemšanai)',appTypeCode:'11724',appRegNr:'2026-A1-11701',appRegDate:'15.01.2026',receiveType:'E-iesniegums (portāls)',
    status:'proc',expanded:false,selectedInspectors:['OZOLIŅA S.'],
    persons:[{name:'KOWALSKI PIOTR',kods:'611111-61111',valsts:'Nīderlande (NL)',veids:'Norīkotais darbinieks',no:'01.02.2026',lidz:'31.07.2026',devejs:'Kreiss BV, Amsterdama',iesniegts:'15.01.2026',status:'proc',inspector:'OZOLIŅA S.'}],
    docs:[{name:'kowalski_ligums.pdf',size:'312 KB',descr:'Darba līgums',date:'15.01.2026'},{name:'kreiss_bv_reg.pdf',size:'88 KB',descr:'Darba devēja reģistrācija NL',date:'15.01.2026'}],
@@ -1374,7 +1384,7 @@ function onSelectApp(app){
   document.getElementById('cEpastsOnlyRow').style.display=isPerson?'':'none';
   sv('cEpastsOnly',app.epasts);
   sv('cAppName',app.appName);sv('cAppRegNr',app.appRegNr);
-  sv('cAppFullTitle',app.appRegNr+'  —  '+app.appName);
+  sv('cAppFullTitle',app.appName);
   sv('cAppRegDate',app.appRegDate);
   sv('cAppPersonCount',app.persons.length);
   sv('cAppUnprocessed',app.persons.filter(function(p){return p.status==='new'||p.status==='proc';}).length);
@@ -1811,9 +1821,12 @@ function registerNewApp(){
   var now=new Date(),dt=pad(now.getDate())+'.'+pad(now.getMonth()+1)+'.'+now.getFullYear();
   var nr=''+(11800+apps.length);
   var dtFull=dt+' '+pad(now.getHours())+':'+pad(now.getMinutes());
+  var typeSel=document.getElementById('naType');
+  var typeCode=typeSel?typeSel.value:'11724';
+  var typeName=typeSel?typeSel.options[typeSel.selectedIndex].text:'11724 — Iesniegums';
   var a={id:'A'+Date.now(),nr:nr,date:dt,company:co,regNr:rn,adrese:'—',talrunis:'—',
     kontakts:document.getElementById('naCt').value||'—',epasts:document.getElementById('naEm').value||'—',
-    appName:'Iesniegums sociāli apdrošināmās personas statusa saglabāšanai Latvijā',appRegNr:now.getFullYear()+'-A1-'+nr,
+    appName:typeName,appTypeCode:typeCode,appRegNr:now.getFullYear()+'-A1-'+nr,
     appRegDate:dt,receiveType:document.getElementById('naRt').value,
     status:'new',expanded:false,inspectorCount:parseInt(document.getElementById('naIc').value)||1,
     persons:[],docs:[],responses:[],
